@@ -29,7 +29,6 @@ class MenuPartidasController extends Controller
             ->orderBy('horario')
             ->get();
 
-
         return view('pages.partidas.listagem', compact('partidas_sabado', 'partidas_domingo'));
     }
 

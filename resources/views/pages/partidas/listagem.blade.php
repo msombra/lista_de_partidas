@@ -36,6 +36,12 @@
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                             </tr>
                         @endforeach
+                        @if ($partidas_sabado->isEmpty())
+                            <tr>
+                                <td colspan="4">Nenhuma partida cadastrada para sábado.</td>
+                            </tr>
+                        @endif
+                        
 
                         {{-- PARTIDAS NO DOMINGO --}}
                         <tr>
@@ -55,6 +61,11 @@
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                             </tr>
                         @endforeach
+                        @if ($partidas_domingo->isEmpty())
+                            <tr>
+                                <td colspan="4">Nenhuma partida cadastrada para domingo.</td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
 
