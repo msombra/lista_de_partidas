@@ -41,21 +41,29 @@ class MenuPartidasController extends Controller
 
     public function store(Request $request)
     {
-        // $regras = [
-        //     'time_principal' => 'required',
-        //     'dia' => 'required',
-        //     'horario' => 'required'
-        // ];
+        $regras = [
+            'time_principal' => 'required',
+            'adversario_nao_existente' => 'nullable',
+            'adversario_existente' => 'nullable',
+            'dia' => 'required',
+            'horario' => 'required',
+            'partida_importante' => 'nullable'
+        ];
 
-        // $validar = $request->validate($regras);
+        $msg = 'Campo de preenchimento obrigatório';
+        $mensagens = [
+            'time_principal' => $msg,
+            'dia' => $msg,
+            'horario' => $msg
+        ];
 
-        // TblPartidas::create($validar);
+        $validar = $request->validate($regras, $mensagens);
 
         $partida = $request->all();
 
-        TblPartidas::create($partida);
+        TblPartidas::create($validar);
 
-        return redirect()->back();
+        return redirect()->route('partidas.index');
     }
 
     public function delete()

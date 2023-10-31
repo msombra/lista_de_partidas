@@ -23,6 +23,13 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('time_principal'))
+                                <small class="text-danger"><i>
+                                    @foreach($errors->get('time_principal') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </i></small>
+                            @endif
                         </div>
 
                         {{-- radio buttons para selecionar o time adversário --}}
@@ -47,7 +54,7 @@
                         {{-- input para digitar o nome do time adversário --}}
                         <div class="form-group col-12" id="adversarioNaoExistente" style="display: none;">
                             <label for="adversario_nao_existente">Nome time adversário</label>
-                            <input type="text" class="form-control" id="adversario_nao_existente" name="adversario_nao_existente">
+                            <input type="text" class="form-control" id="adversario_nao_existente" name="adversario_nao_existente" required>
                         </div>
 
                         {{-- input para selecionar o time principal --}}
@@ -71,12 +78,26 @@
                                 <option value="1">Sábado</option>
                                 <option value="2">Domingo</option>
                             </select>
+                            @if ($errors->has('dia'))
+                                <small class="text-danger"><i>
+                                    @foreach($errors->get('dia') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </i></small>
+                            @endif
                         </div>
 
                         {{-- input para informar o horário da partida --}}
                         <div class="form-group col-6">
                             <label for="horario">Horário do Jogo</label>
                             <input type="time" class="form-control" id="horario" name="horario">
+                            @if ($errors->has('horario'))
+                                <small class="text-danger"><i>
+                                    @foreach($errors->get('horario') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </i></small>
+                            @endif
                         </div>
 
                         {{-- checkbox para selecionar se a partida vai ser importante --}}

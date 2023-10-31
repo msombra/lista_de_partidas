@@ -25,7 +25,7 @@
                             </th>
                         </tr>
                         @foreach ($partidas_sabado as $partida)
-                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-secondary' : '' }}">
+                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-warning' : '' }}">
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
@@ -41,7 +41,7 @@
                                 <td colspan="4">Nenhuma partida cadastrada para sábado.</td>
                             </tr>
                         @endif
-                        
+
 
                         {{-- PARTIDAS NO DOMINGO --}}
                         <tr>
@@ -50,7 +50,7 @@
                             </th>
                         </tr>
                         @foreach ($partidas_domingo as $partida)
-                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-secondary' : '' }}">
+                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-warning' : '' }}">
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
