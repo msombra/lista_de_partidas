@@ -42,19 +42,23 @@ class MenuPartidasController extends Controller
     public function store(Request $request)
     {
         $regras = [
-            'time_principal' => 'required',
-            'adversario_nao_existente' => 'required_if:adversario_existente,null',
-            'adversario_existente' => 'required_if:adversario_nao_existente,null',
+            'time_principal' => 'required|unique:tbl_partidas,time_principal',
+            'adversario_nao_existente' => 'required_if:adversario_existente,null|unique:tbl_partidas,adversario_nao_existente',
+            'adversario_existente' => 'required_if:adversario_nao_existente,null|unique:tbl_partidas,adversario_existente',
             'dia' => 'required',
             'horario' => 'required',
             'partida_importante' => 'nullable'
         ];
 
         $msg = 'Campo de preenchimento obrigatório';
+        $msg2 = 'Valor do campo já inserido';
         $mensagens = [
-            'time_principal' => $msg,
-            'adversario_nao_existente' => $msg,
-            'adversario_existente' => $msg,
+            'time_principal.required' => $msg,
+            'time_principal.unique' => $msg2,
+            'adversario_nao_existente.required' => $msg,
+            'adversario_nao_existente.unique' => $msg2,
+            'adversario_existente.required' => $msg,
+            'adversario_existente.unique' => $msg2,
             'dia' => $msg,
             'horario' => $msg
         ];
