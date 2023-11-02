@@ -311,20 +311,20 @@ return [
         // aba partidas
         [
             'text'  => 'Partidas',
-            'route' => 'partidas.index',
+            // 'route' => 'partidas.index',
             'icon'  => 'nav-icon far fa-futbol',
-            // 'submenu' => [
-            //     [
-            //         'text'  => 'Listagem',
-            //         'route' => 'partidas.index',
-            //         // 'url' => '#'
-            //     ],
-            //     [
-            //         'text'  => 'Inserir',
-            //         'route' => 'partidas.inserir_partida',
-            //         // 'url' => '#'
-            //     ],
-            // ]
+            'submenu' => [
+                [
+                    'text'  => 'Listagem',
+                    'route' => 'partidas.index',
+                    // 'url' => '#'
+                ],
+                [
+                    'text'  => 'Inserir',
+                    'route' => 'partidas.inserir_partida',
+                    // 'url' => '#'
+                ],
+            ]
         ],
 
         // menu para testes
