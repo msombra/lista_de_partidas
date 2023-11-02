@@ -54,7 +54,14 @@
                         {{-- input para digitar o nome do time adversário --}}
                         <div class="form-group col-12" id="adversarioNaoExistente" style="display: none;">
                             <label for="adversario_nao_existente">Nome time adversário</label>
-                            <input type="text" class="form-control" id="adversario_nao_existente" name="adversario_nao_existente" required>
+                            <input type="text" class="form-control" id="adversario_nao_existente" name="adversario_nao_existente">
+                            @if ($errors->has('adversario_nao_existente'))
+                                <small class="text-danger"><i>
+                                    @foreach($errors->get('adversario_nao_existente') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </i></small>
+                            @endif
                         </div>
 
                         {{-- input para selecionar o time principal --}}
@@ -68,6 +75,13 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('adversario_existente'))
+                                <small class="text-danger"><i>
+                                    @foreach($errors->get('adversario_existente') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </i></small>
+                            @endif
                         </div>
 
                         {{-- input para selecionar o dia da partida --}}

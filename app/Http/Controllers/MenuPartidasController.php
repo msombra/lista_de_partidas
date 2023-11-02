@@ -43,8 +43,8 @@ class MenuPartidasController extends Controller
     {
         $regras = [
             'time_principal' => 'required',
-            'adversario_nao_existente' => 'nullable',
-            'adversario_existente' => 'nullable',
+            'adversario_nao_existente' => 'required_if:adversario_existente,null',
+            'adversario_existente' => 'required_if:adversario_nao_existente,null',
             'dia' => 'required',
             'horario' => 'required',
             'partida_importante' => 'nullable'
@@ -53,6 +53,8 @@ class MenuPartidasController extends Controller
         $msg = 'Campo de preenchimento obrigatório';
         $mensagens = [
             'time_principal' => $msg,
+            'adversario_nao_existente' => $msg,
+            'adversario_existente' => $msg,
             'dia' => $msg,
             'horario' => $msg
         ];
