@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuPartidasController;
+use App\Http\Controllers\AcordoController;
 use App\Http\Controllers\TesteController;
 
 /*
@@ -23,11 +24,18 @@ Route::get('/', function() {
     return view('pages.home.index');
 });
 
-// ROTAS PARA TELA DE PARTIDAS
+// PARTIDAS
 Route::get('/partidas/listagem', [MenuPartidasController::class, 'index'])->name('partidas.index');
 Route::get('/partidas/inserir_partida', [MenuPartidasController::class, 'create'])->name('partidas.inserir_partida');
 Route::post('/partidas/store', [MenuPartidasController::class, 'store'])->name('partidas.store');
 Route::get('/partidas/delete_all', [MenuPartidasController::class, 'delete'])->name('partidas.delete');
+
+// ACORDO
+Route::get('/acordo/acordo_list', [AcordoController::class, 'list'])->name('acordo.list');
+Route::get('/acordo/acordo_insert', [AcordoController::class, 'create'])->name('acordo.create');
+Route::post('/acordo/store', [AcordoController::class, 'store'])->name('acordo.store');
+Route::get('/acordo/acorco_edit={id}', [AcordoController::class, 'edit'])->name('acordo.edit');
+Route::post('/acordo/acorco_edit={id}/update', [AcordoController::class, 'update'])->name('acordo.update');
 
 // teste
 // Route::get('/teste', [TesteController::class, 'index'])->name('teste.index');

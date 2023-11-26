@@ -18,3 +18,11 @@ function mostrarSelect() {
     principal.style.display = "block"
     secundario.style.display = "none"
 }
+
+$("#nao_existente").click(function(){
+    $('#adversario_nao_existente').focus();
+});
+
+$("#dia").change(function(){
+    $('#horario').focus();
+});

@@ -18,7 +18,7 @@
                             <select class="form-control" name="time_principal" id="time_principal">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->id }}">
+                                    <option value="{{ $time->id }}" {{ old('time_principal') == $time->id ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
@@ -55,13 +55,13 @@
                         <div class="form-group col-12" id="adversarioNaoExistente" style="display: none;">
                             <label for="adversario_nao_existente">Nome time adversário</label>
                             <input type="text" class="form-control" id="adversario_nao_existente" name="adversario_nao_existente">
-                            @if ($errors->has('adversario_nao_existente'))
+                            {{-- @if ($errors->has('adversario_nao_existente'))
                                 <small class="text-danger"><i>
                                     @foreach($errors->get('adversario_nao_existente') as $error)
                                         {{ $error }}
                                     @endforeach
                                 </i></small>
-                            @endif
+                            @endif --}}
                         </div>
 
                         {{-- input para selecionar o time principal --}}
@@ -70,18 +70,18 @@
                             <select class="form-control" name="adversario_existente" id="adversario_existente">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->id }}">
+                                    <option value="{{ $time->id }}" {{ old('adversario_existente') == $time->id ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('adversario_existente'))
+                            {{-- @if ($errors->has('adversario_existente'))
                                 <small class="text-danger"><i>
                                     @foreach($errors->get('adversario_existente') as $error)
                                         {{ $error }}
                                     @endforeach
                                 </i></small>
-                            @endif
+                            @endif --}}
                         </div>
 
                         {{-- input para selecionar o dia da partida --}}

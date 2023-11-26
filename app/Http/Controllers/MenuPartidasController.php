@@ -43,8 +43,10 @@ class MenuPartidasController extends Controller
     {
         $regras = [
             'time_principal' => 'required|unique:tbl_partidas,time_principal',
-            'adversario_nao_existente' => 'required_if:adversario_existente,null|unique:tbl_partidas,adversario_nao_existente',
-            'adversario_existente' => 'required_if:adversario_nao_existente,null|unique:tbl_partidas,adversario_existente',
+            // 'adversario_nao_existente' => 'required_if:adversario_existente,null|unique:tbl_partidas,adversario_nao_existente',
+            // 'adversario_existente' => 'required_if:adversario_nao_existente,null|unique:tbl_partidas,adversario_existente',
+            'adversario_nao_existente' => 'nullable',
+            'adversario_existente' => 'nullable',
             'dia' => 'required',
             'horario' => 'required',
             'partida_importante' => 'nullable'
@@ -56,9 +58,9 @@ class MenuPartidasController extends Controller
             'time_principal.required' => $msg,
             'time_principal.unique' => $msg2,
             'adversario_nao_existente.required' => $msg,
-            'adversario_nao_existente.unique' => $msg2,
+            // 'adversario_nao_existente.unique' => $msg2,
             'adversario_existente.required' => $msg,
-            'adversario_existente.unique' => $msg2,
+            // 'adversario_existente.unique' => $msg2,
             'dia' => $msg,
             'horario' => $msg
         ];

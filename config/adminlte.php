@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -312,7 +312,7 @@ return [
         [
             'text'  => 'Partidas',
             // 'route' => 'partidas.index',
-            'icon'  => 'nav-icon far fa-futbol',
+            'icon'  => 'fas fa-fw fa-list-alt',
             'submenu' => [
                 [
                     'text'  => 'Listagem',
@@ -322,6 +322,25 @@ return [
                 [
                     'text'  => 'Inserir',
                     'route' => 'partidas.inserir_partida',
+                    // 'url' => '#'
+                ],
+            ]
+        ],
+
+        // ACORDO
+        [
+            'text'  => 'Acordo',
+            // 'route' => 'partidas.index',
+            'icon'  => 'fas fa-fw fa-handshake',
+            'submenu' => [
+                [
+                    'text'  => 'Listagem',
+                    'route' => 'acordo.list',
+                    // 'url' => '#'
+                ],
+                [
+                    'text'  => 'Cadastrar Acordo',
+                    'route' => 'acordo.create',
                     // 'url' => '#'
                 ],
             ]
