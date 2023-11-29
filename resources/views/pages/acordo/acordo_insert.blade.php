@@ -81,7 +81,7 @@
                             {{-- DATA VENCIMENTO --}}
                             <div class="form-group col-2">
                                 <label for="data_vencimento">Data Vencimento</label>
-                                <input type="date" name="data_vencimento" id="data_vencimento" class="form-control">
+                                <input type="date" name="data_vencimento" id="data_vencimento" class="form-control" disabled>
                             </div>
                             {{-- DATA LIMITE PAGAMENTO --}}
                             <div class="form-group col-2">
@@ -103,7 +103,7 @@
                             {{-- TIPO SOLICITAÇÃO --}}
                             <div class="form-group col-2">
                                 <label for="tipo_solicitacao">Tipo Solicitação</label>
-                                <select name="tipo_solicitacao" id="tipo_solicitacao" class="form-control">
+                                <select name="tipo_solicitacao" id="tipo_solicitacao" class="form-control" disabled>
                                     <option value="">Selecione</option>
                                     <option value="1">EM ENCERRAMENTO</option>
                                     <option value="2">OPÇÃO 2</option>
@@ -116,17 +116,17 @@
                             {{-- SOLICITANTE --}}
                             <div class="form-group col-3">
                                 <label for="solicitante">Solicitante</label>
-                                <input type="text" name="solicitante" id="solicitante" class="form-control">
+                                <input type="text" name="solicitante" id="solicitante" class="form-control" disabled>
                             </div>
                             {{-- MOTIVO ENCERRAMENTO --}}
                             <div class="form-group col-3">
                                 <label for="motivo_encerramento">Motivo Encerramento</label>
-                                <input type="text" name="motivo_encerramento" id="motivo_encerramento" class="form-control">
+                                <input type="text" name="motivo_encerramento" id="motivo_encerramento" class="form-control" disabled>
                             </div>
                             {{-- PENDÊNCIA CONTÁBIL --}}
                             <div class="form-group col-2">
                                 <label for="pendencia_contabil">Pend. Contabil</label>
-                                <select name="pendencia_contabil" id="pendencia_contabil" class="form-control">
+                                <select name="pendencia_contabil" id="pendencia_contabil" class="form-control" disabled>
                                     <option value="">Selecione</option>
                                     <option value="0">NÃO</option>
                                     <option value="1">SIM</option>
@@ -135,7 +135,7 @@
                             {{-- DEP. CONTA BRADESCO --}}
                             <div class="form-group col-2">
                                 <label for="dep_conta_bradesco">Dep. Conta Bradesco</label>
-                                <select name="dep_conta_bradesco" id="dep_conta_bradesco" class="form-control">
+                                <select name="dep_conta_bradesco" id="dep_conta_bradesco" class="form-control" disabled>
                                     <option value="">Selecione</option>
                                     <option value="0">NÃO</option>
                                     <option value="1">SIM</option>
@@ -144,7 +144,7 @@
                             {{-- NOME BANCO --}}
                             <div class="form-group col-2">
                                 <label for="nome_banco">Nome Banco</label>
-                                <select name="nome_banco" id="nome_banco" class="form-control">
+                                <select name="nome_banco" id="nome_banco" class="form-control" disabled>
                                     <option value="">Selecione</option>
                                     @foreach ($bancos as $banco)
                                         <option value="{{ $banco->id }}">
@@ -160,12 +160,12 @@
                             {{-- AGENCIA --}}
                             <div class="form-group col-1">
                                 <label for="agencia">Agência</label>
-                                <input type="text" name="agencia" id="agencia" class="form-control">
+                                <input type="text" name="agencia" id="agencia" class="form-control" disabled>
                             </div>
                             {{-- TIPO CONTA --}}
                             <div class="form-group col-2">
                                 <label for="tipo_conta">Tipo Conta</label>
-                                <select name="tipo_conta" id="tipo_conta" class="form-control">
+                                <select name="tipo_conta" id="tipo_conta" class="form-control" disabled>
                                     <option value="">Selecione</option>
                                     <option value="0">CORRENTE</option>
                                     <option value="1">POUPANCA</option>
@@ -174,22 +174,22 @@
                             {{-- CONTA --}}
                             <div class="form-group col-2">
                                 <label for="conta">Conta</label>
-                                <input type="text" name="conta" id="conta" class="form-control">
+                                <input type="text" name="conta" id="conta" class="form-control" disabled>
                             </div>
                             {{-- DIGITO --}}
                             <div class="form-group col-1">
                                 <label for="digito">Digito</label>
-                                <input type="number" name="digito" id="digito" class="form-control">
+                                <input type="number" name="digito" id="digito" class="form-control" disabled>
                             </div>
                             {{-- ID PAGAMENTO --}}
                             <div class="form-group col-3">
                                 <label for="id_pagamento">ID Pagamento</label>
-                                <input type="text" name="id_pagamento" id="id_pagamento" class="form-control">
+                                <input type="text" name="id_pagamento" id="id_pagamento" class="form-control" disabled>
                             </div>
                             {{-- CODIGO DE BARRAS --}}
                             <div class="form-group col-3">
                                 <label for="codigo_barras">Código de Barras</label>
-                                <input type="text" name="codigo_barras" id="codigo_barras" class="form-control">
+                                <input type="text" name="codigo_barras" id="codigo_barras" class="form-control" disabled>
                             </div>
                         </div>
 
