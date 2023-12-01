@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-5 mx-auto">
+        <div class="col-6 mx-auto">
             {{-- <form class="text-right" method="get" action="{{ route('agenda.delete') }}">
                 @csrf
                 <button type="submit" class="btn btn-primary">Limpar</button>
