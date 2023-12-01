@@ -17,10 +17,10 @@
             </div>
             <div class="card mt-3">
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-sm table-hover text-nowrap" style="cursor: default">
+                    <table class="table table-sm table-hover text-nowrap text-center" style="cursor: default">
                         {{-- PARTIDAS NO SÁBADO --}}
                         <tr>
-                            <th class="text-center bg-primary" colspan="5">
+                            <th class="bg-primary" colspan="5">
                                 <h4 class="my-auto">Sábado</h4>
                             </th>
                         </tr>
@@ -35,7 +35,7 @@
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
-                                <td class="text-right">
+                                <td>
                                     <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
@@ -57,7 +57,7 @@
 
                         {{-- PARTIDAS NO DOMINGO --}}
                         <tr>
-                            <th class="text-center bg-primary" colspan="5">
+                            <th class="bg-primary" colspan="5">
                                 <h4 class="my-auto">Domingo</h4>
                             </th>
                         </tr>
@@ -72,7 +72,7 @@
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
-                                <td class="text-right">
+                                <td>
                                     <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
