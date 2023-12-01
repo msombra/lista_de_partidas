@@ -20,7 +20,7 @@
                     <table class="table table-sm table-hover text-nowrap" style="cursor: default">
                         {{-- PARTIDAS NO SÁBADO --}}
                         <tr>
-                            <th class="text-center bg-primary" colspan="4">
+                            <th class="text-center bg-primary" colspan="5">
                                 <h4 class="my-auto">Sábado</h4>
                             </th>
                         </tr>
@@ -34,18 +34,30 @@
                                     <td>{{ $partida->adversario_existente }}</td>
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
+                                {{-- AÇÕES --}}
+                                <td class="text-right">
+                                    <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
+                                        <i class="fas fa-fw fa-edit"></i>
+                                    </a>
+                                    <button class="btn btn-warning btn-sm" title="Destacar partida">
+                                        <i class="fas fa-fw fa-star"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
+                                        <i class="fas fa-fw fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         @if ($partidas_sabado->isEmpty())
                             <tr>
-                                <td colspan="4">Nenhuma partida cadastrada para sábado.</td>
+                                <td colspan="5">Nenhuma partida cadastrada para sábado.</td>
                             </tr>
                         @endif
 
 
                         {{-- PARTIDAS NO DOMINGO --}}
                         <tr>
-                            <th class="text-center bg-primary" colspan="4">
+                            <th class="text-center bg-primary" colspan="5">
                                 <h4 class="my-auto">Domingo</h4>
                             </th>
                         </tr>
@@ -59,6 +71,18 @@
                                     <td>{{ $partida->adversario_existente }}</td>
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
+                                {{-- AÇÕES --}}
+                                <td class="text-right">
+                                    <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
+                                        <i class="fas fa-fw fa-edit"></i>
+                                    </a>
+                                    <button class="btn btn-warning btn-sm" title="Destacar partida">
+                                        <i class="fas fa-fw fa-star"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
+                                        <i class="fas fa-fw fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         @if ($partidas_domingo->isEmpty())
