@@ -13,7 +13,7 @@
             </form> --}}
             <div class="text-right">
                 <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-success mx-2" title="Inserir partida">Inserir</a>
-                <a href="{{ route('partidas.delete') }}" class="btn btn-danger" title="Limpar listagem">Limpar</a>
+                <a href="{{ route('partidas.delete') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
             </div>
             <div class="card mt-3">
                 <div class="card-body table-responsive p-0">
@@ -72,4 +72,14 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+        $('#limpar').click(function(e) {
+            if (!confirm('Deseja limpar a listagem?')) {
+                e.preventDefault(); // Impede o comportamento padrão do link
+            }
+        });
+    </script>
 @stop
