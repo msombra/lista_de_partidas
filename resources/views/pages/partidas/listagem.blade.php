@@ -7,13 +7,10 @@
 @section('content')
     <div class="row">
         <div class="col-6 mx-auto">
-            {{-- <form class="text-right" method="get" action="{{ route('agenda.delete') }}">
-                @csrf
-                <button type="submit" class="btn btn-primary">Limpar</button>
-            </form> --}}
             <div class="text-right">
-                <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-success mx-2" title="Inserir partida">Inserir</a>
+                <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-success" title="Inserir partida">Inserir</a>
                 <a href="{{ route('partidas.delete') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
+                <button class="btn btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
             </div>
             <div class="card mt-3">
                 <div class="card-body table-responsive p-0">
@@ -25,7 +22,7 @@
                             </th>
                         </tr>
                         @foreach ($partidas_sabado as $partida)
-                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-warning' : '' }}">
+                            <tr class="destacar" title="Destacar partida">
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
@@ -35,13 +32,10 @@
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
-                                <td>
+                                <td class="acoes text-right" style="display: none;">
                                     <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-warning btn-sm" title="Destacar partida">
-                                        <i class="fas fa-fw fa-star"></i>
-                                    </button>
                                     <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
                                         <i class="fas fa-fw fa-trash"></i>
                                     </a>
@@ -54,7 +48,6 @@
                             </tr>
                         @endif
 
-
                         {{-- PARTIDAS NO DOMINGO --}}
                         <tr>
                             <th class="bg-primary" colspan="5">
@@ -62,7 +55,7 @@
                             </th>
                         </tr>
                         @foreach ($partidas_domingo as $partida)
-                            <tr class="{{ $partida->partida_importante == 1 ? 'bg-warning' : '' }}">
+                            <tr class="destacar" title="Destacar partida">
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
@@ -72,13 +65,10 @@
                                 @endif
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
-                                <td>
+                                <td class="acoes text-right" style="display: none;">
                                     <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-warning btn-sm" title="Destacar partida">
-                                        <i class="fas fa-fw fa-star"></i>
-                                    </button>
                                     <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
                                         <i class="fas fa-fw fa-trash"></i>
                                     </a>
@@ -87,7 +77,7 @@
                         @endforeach
                         @if ($partidas_domingo->isEmpty())
                             <tr>
-                                <td colspan="4">Nenhuma partida cadastrada para domingo.</td>
+                                <td colspan="5">Nenhuma partida cadastrada para domingo.</td>
                             </tr>
                         @endif
                     </table>
@@ -100,10 +90,25 @@
 
 @section('js')
     <script>
+        // Função que exibe um confirm ao clique no botão Limpar
         $('#limpar').click(function(e) {
             if (!confirm('Deseja limpar a listagem?')) {
                 e.preventDefault(); // Impede o comportamento padrão do link
             }
         });
+
+        // Função que destaca partida ao clique
+        $('.destacar').click(function() {
+            $(this).toggleClass('bg-warning');
+        });
+
+        // Função que exibe os botões de ações na listagem
+        $('#mostrar-acoes').click(function() {
+            $('.acoes').toggle();
+            // alterna o texto do botão Mostrar/Esconder Ações
+            $(this).text(function(i, text){
+                return text === "Mostrar Ações" ? "Esconder Ações" : "Mostrar Ações";
+            });
+        })
     </script>
 @stop
