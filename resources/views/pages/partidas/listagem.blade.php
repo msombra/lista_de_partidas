@@ -26,7 +26,7 @@
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
-                                    <td>{{ $partida->adversario_nao_existente }}</td>
+                                    <td>{{ ucwords($partida->adversario_nao_existente) }}</td>
                                 @else
                                     <td>{{ $partida->adversario_existente }}</td>
                                 @endif
@@ -59,7 +59,7 @@
                                 <td>{{ $partida->time_principal }}</td>
                                 <td>vs.</td>
                                 @if ($partida->adversario_nao_existente != null)
-                                    <td>{{ $partida->adversario_nao_existente }}</td>
+                                    <td>{{ ucwords($partida->adversario_nao_existente) }}</td>
                                 @else
                                     <td>{{ $partida->adversario_existente }}</td>
                                 @endif

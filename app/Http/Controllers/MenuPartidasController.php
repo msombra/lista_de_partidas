@@ -63,7 +63,7 @@ class MenuPartidasController extends Controller
         //     'horario' => $msg
         // ];
 
-        $validar = $request->validate($regras, $mensagens);
+        $validar = $request->validate($regras);
 
         $partida = $request->all();
 
