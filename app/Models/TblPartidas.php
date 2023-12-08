@@ -11,11 +11,11 @@ class TblPartidas extends Model
 
     protected $fillable = [
         'time_principal',
+        'tipo_adversario',
         'adversario_nao_existente',
         'adversario_existente',
         'dia',
-        'horario',
-        'partida_importante'
+        'horario'
     ];
 
     public $timestamps = false;

@@ -33,7 +33,7 @@
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
                                 <td class="acoes text-right" style="display: none;">
-                                    <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
+                                    <a href="{{ route('partidas.editar_partida', $partida->id) }}" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
@@ -66,7 +66,7 @@
                                 <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
                                 {{-- AÇÕES --}}
                                 <td class="acoes text-right" style="display: none;">
-                                    <a href="#" class="btn btn-outline-primary btn-sm" title="Editar partida">
+                                    <a href="{{ route('partidas.editar_partida', $partida->id) }}" class="btn btn-outline-primary btn-sm" title="Editar partida">
                                         <i class="fas fa-fw fa-edit"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-sm" title="Deletar partida">
@@ -89,26 +89,5 @@
 @stop
 
 @section('js')
-    <script>
-        // Função que exibe um confirm ao clique no botão Limpar
-        $('#limpar').click(function(e) {
-            if (!confirm('Deseja limpar a listagem?')) {
-                e.preventDefault(); // Impede o comportamento padrão do link
-            }
-        });
-
-        // Função que destaca partida ao clique
-        $('.destacar').click(function() {
-            $(this).toggleClass('bg-warning');
-        });
-
-        // Função que exibe os botões de ações na listagem
-        $('#mostrar-acoes').click(function() {
-            $('.acoes').toggle();
-            // alterna o texto do botão Mostrar/Esconder Ações
-            $(this).text(function(i, text){
-                return text === "Mostrar Ações" ? "Esconder Ações" : "Mostrar Ações";
-            });
-        })
-    </script>
+    <script src="../js/regras_list.js"></script>
 @stop

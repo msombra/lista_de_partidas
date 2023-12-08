@@ -28,6 +28,8 @@ Route::get('/', function() {
 Route::get('/partidas/listagem', [MenuPartidasController::class, 'index'])->name('partidas.index');
 Route::get('/partidas/inserir_partida', [MenuPartidasController::class, 'create'])->name('partidas.inserir_partida');
 Route::post('/partidas/store', [MenuPartidasController::class, 'store'])->name('partidas.store');
+Route::get('/partidas/editar_partida={id}', [MenuPartidasController::class, 'edit'])->name('partidas.editar_partida');
+Route::post('/partidas/update={id}', [MenuPartidasController::class, 'update'])->name('partidas.update');
 Route::get('/partidas/delete_all', [MenuPartidasController::class, 'delete'])->name('partidas.delete');
 
 // ACORDO
