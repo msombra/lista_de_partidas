@@ -20,3 +20,20 @@ $('#existente').click(function() {
 $("#dia").change(function(){
     $('#horario').focus();
 });
+
+// função que seleciona automaticamente a opção Não Existente caso o time principal seja o PSG
+$('#time_principal').change(function() {
+    var time_principal = $('#time_principal').val();
+    var psg = 11;
+
+    if(time_principal == psg) {
+        $('#nao_existente').prop('checked', true);
+        $('#existente').prop('disabled', true);
+        $('#adversarioNaoExistente').css('display', 'block');
+        $('#adversario_nao_existente').focus();
+    }
+    else {
+        $('#nao_existente').prop('checked', false);
+        $('#adversarioNaoExistente').css('display', 'none');
+    }
+});
