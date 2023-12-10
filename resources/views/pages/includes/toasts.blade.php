@@ -1,6 +1,5 @@
-@if(session('sucesso'))
+@if(session('toast_insert'))
     <script>
-        console.log('inclusão presente');
         Swal.fire({
             icon: "success",
             title: "Partida incluída com sucesso!",
@@ -15,9 +14,8 @@
     </script>
 @endif
 
-@if(session('atualizado'))
+@if(session('toast_update'))
     <script>
-        console.log('atualizado presente');
         Swal.fire({
             icon: "success",
             title: "Partida atualizada com sucesso!",
@@ -26,6 +24,22 @@
             showConfirmButton: false,
             timer: 4000,
             background: '#007BFF',
+            color: '#fff',
+            iconColor: '#fff',
+        });
+    </script>
+@endif
+
+@if(session('toast_delete'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Partida deletada com sucesso!",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 4000,
+            background: '#FF0000',
             color: '#fff',
             iconColor: '#fff',
         });

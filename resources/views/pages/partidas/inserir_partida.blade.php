@@ -129,4 +129,5 @@
 
 @section('js')
     <script src="../js/regras_insert.js"></script>
+    {{-- @include('pages.includes.toast_clear') --}}
 @stop

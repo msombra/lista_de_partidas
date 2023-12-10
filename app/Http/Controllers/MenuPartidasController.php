@@ -69,7 +69,7 @@ class MenuPartidasController extends Controller
 
         TblPartidas::create($validar);
 
-        return redirect()->route('partidas.index')->with('sucesso', 'Partida incluída com sucesso!');
+        return redirect()->route('partidas.index')->with('toast_insert', 'Partida incluída com sucesso!');
     }
 
     public function edit($id)
@@ -105,13 +105,29 @@ class MenuPartidasController extends Controller
 
         $partida->update($validar);
 
-        return redirect()->route('partidas.index')->with('atualizado', 'Partida atualizada com sucesso!');
+        return redirect()->route('partidas.index')->with('toast_update', 'Partida atualizada com sucesso!');
     }
 
-    public function delete()
+    // Função que deleta um registro que for selecionado
+    public function deleteOne($id)
+    {
+        $partida = TblPartidas::find($id);
+
+        if(!$partida) {
+            return redirect()->route('partidas.index');
+        }
+
+        $partida->delete();
+
+        return redirect()->route('partidas.index')->with('toast_delete', 'Partida deletada com sucesso!');
+    }
+
+    // Função que deleta todos os registros
+    public function deleteAll()
     {
         TblPartidas::truncate();
 
-        return redirect()->route('partidas.inserir_partida');
+        // return redirect()->route('partidas.inserir_partida');
+        return redirect()->route('partidas.index');
     }
 }

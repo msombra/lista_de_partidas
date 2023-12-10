@@ -30,7 +30,8 @@ Route::get('/partidas/inserir_partida', [MenuPartidasController::class, 'create'
 Route::post('/partidas/store', [MenuPartidasController::class, 'store'])->name('partidas.store');
 Route::get('/partidas/editar_partida={id}', [MenuPartidasController::class, 'edit'])->name('partidas.editar_partida');
 Route::post('/partidas/update={id}', [MenuPartidasController::class, 'update'])->name('partidas.update');
-Route::get('/partidas/delete_all', [MenuPartidasController::class, 'delete'])->name('partidas.delete');
+Route::delete('/partidas/delete_one={id}', [MenuPartidasController::class, 'deleteOne'])->name('partidas.deletar_partida');
+Route::get('/partidas/delete_all', [MenuPartidasController::class, 'deleteAll'])->name('partidas.limpar_tudo');
 
 // ACORDO
 Route::get('/acordo/acordo_list', [AcordoController::class, 'list'])->name('acordo.list');
