@@ -69,7 +69,7 @@ class MenuPartidasController extends Controller
 
         TblPartidas::create($validar);
 
-        return redirect()->route('partidas.index');
+        return redirect()->route('partidas.index')->with('sucesso', 'Partida incluída com sucesso!');
     }
 
     public function edit($id)
@@ -105,7 +105,7 @@ class MenuPartidasController extends Controller
 
         $partida->update($validar);
 
-        return redirect()->route('partidas.index');
+        return redirect()->route('partidas.index')->with('atualizado', 'Partida atualizada com sucesso!');
     }
 
     public function delete()

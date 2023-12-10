@@ -137,6 +137,10 @@
             else {
                 $('#adversarioExistente').css('display', 'block');
             }
+
+            if($('#time_principal').val() == 11) {
+                $('#existente').prop('disabled', true);
+            }
         });
     </script>
 @stop

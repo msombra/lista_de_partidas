@@ -35,5 +35,6 @@ $('#time_principal').change(function() {
     else {
         $('#nao_existente').prop('checked', false);
         $('#adversarioNaoExistente').css('display', 'none');
+        $('#existente').prop('disabled', false);
     }
 });

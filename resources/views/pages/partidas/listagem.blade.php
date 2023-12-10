@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('plugins.Sweetalert2', true)
+
 @section('title', 'Agenda Jogos')
 
 @section('content_header', 'Partidas - Final de Semana')
@@ -90,4 +92,5 @@
 
 @section('js')
     <script src="../js/regras_list.js"></script>
+    @include('pages.includes.toasts')
 @stop
