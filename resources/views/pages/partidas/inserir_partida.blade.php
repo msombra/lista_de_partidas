@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('plugins.Sweetalert2', true)
+
 @section('title', 'Agenda Jogos')
 
 @section('content_header', 'Tela para adicionar partidas')
@@ -129,5 +131,20 @@
 
 @section('js')
     <script src="../js/regras_insert.js"></script>
-    {{-- @include('pages.includes.toast_clear') --}}
+
+    @if(session('toast_clear'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Listagem limpada com sucesso!",
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                background: '#00BFFF',
+                color: '#fff',
+                iconColor: '#fff',
+            });
+        </script>
+    @endif
 @stop

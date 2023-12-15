@@ -127,7 +127,7 @@ class MenuPartidasController extends Controller
     {
         TblPartidas::truncate();
 
-        // return redirect()->route('partidas.inserir_partida');
-        return redirect()->route('partidas.index');
+        return redirect()->route('partidas.inserir_partida')->with('toast_clear', 'Listagem limpada com sucesso!');
+        // return redirect()->route('partidas.index');
     }
 }
