@@ -11,6 +11,8 @@ class MenuPartidasController extends Controller
 {
     public function index()
     {
+        $partidas = TblPartidas::all();
+
         $partidas_sabado = DB::table('tbl_partidas as p')
             ->select('p.id', 'tp.nome as time_principal', 'adversario_nao_existente', 'ta.nome as adversario_existente', 'horario')
             ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
@@ -27,7 +29,7 @@ class MenuPartidasController extends Controller
             ->orderBy('horario')
             ->get();
 
-        return view('pages.partidas.listagem', compact('partidas_sabado', 'partidas_domingo'));
+        return view('pages.partidas.listagem', compact('partidas', 'partidas_sabado', 'partidas_domingo'));
     }
 
     public function create()
@@ -128,6 +130,5 @@ class MenuPartidasController extends Controller
         TblPartidas::truncate();
 
         return redirect()->route('partidas.inserir_partida')->with('toast_clear', 'Listagem limpada com sucesso!');
-        // return redirect()->route('partidas.index');
     }
 }

@@ -11,9 +11,14 @@
         <div class="col-6 mx-auto">
             {{-- BOTÕES --}}
             <div class="text-right">
+                {{-- INSERIR --}}
                 <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-success" title="Inserir partida">Inserir</a>
-                <a href="{{ route('partidas.limpar_tudo') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
-                <button class="btn btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
+                @if (!$partidas->isEmpty())
+                    {{-- LIMPAR --}}
+                    <a href="{{ route('partidas.limpar_tudo') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
+                    {{-- MOSTRAR AÇÕES --}}
+                    <button class="btn btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
+                @endif
             </div>
 
             {{-- TABELA CARD --}}
