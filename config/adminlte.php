@@ -328,23 +328,23 @@ return [
         ],
 
         // ACORDO
-        [
-            'text'  => 'Acordo',
-            // 'route' => 'partidas.index',
-            'icon'  => 'fas fa-fw fa-handshake',
-            'submenu' => [
-                [
-                    'text'  => 'Listagem',
-                    'route' => 'acordo.list',
-                    // 'url' => '#'
-                ],
-                [
-                    'text'  => 'Cadastrar Acordo',
-                    'route' => 'acordo.create',
-                    // 'url' => '#'
-                ],
-            ]
-        ],
+        // [
+        //     'text'  => 'Acordo',
+        //     // 'route' => 'partidas.index',
+        //     'icon'  => 'fas fa-fw fa-handshake',
+        //     'submenu' => [
+        //         [
+        //             'text'  => 'Listagem',
+        //             'route' => 'acordo.list',
+        //             // 'url' => '#'
+        //         ],
+        //         [
+        //             'text'  => 'Cadastrar Acordo',
+        //             'route' => 'acordo.create',
+        //             // 'url' => '#'
+        //         ],
+        //     ]
+        // ],
 
         // menu para testes
         // [

@@ -1,54 +1,22 @@
-$('#nao_existente').click(function() {
-    // alterando display dos elementos
-    $('#adversarioNaoExistente').css('display', 'block');
-    $('#adversarioExistente').css('display', 'none');
-    // limpando campo
-    $('#adversario_existente').val('');
-    // aplica foco no input
-    $('#adversario_nao_existente').focus();
-});
-
-$('#existente').click(function() {
-    // alterando display dos elementos
-    $('#adversarioExistente').css('display', 'block');
-    $('#adversarioNaoExistente').css('display', 'none');
-    // limpando campo
-    $('#adversario_nao_existente').val('');
-});
-
-// função que aplica o foco no Horário logo após selecionar o Dia
-$("#dia").change(function(){
-    $('#horario').focus();
-});
-
-// função que seleciona automaticamente a opção Não Existente caso o time principal seja o PSG
-$('#time_principal').change(function() {
+$(document).ready(function() {
     var time_principal = $('#time_principal').val();
-    var psg = 11;
-    var al_nassr = 15;
+
+    if ($('#nao_existente').prop('checked')) {
+        $('#adversarioNaoExistente').css('display', 'block');
+    }
+    else {
+        $('#adversarioExistente').css('display', 'block');
+    }
+
+    if(time_principal == 11 || time_principal == 15) {
+        $('#existente').prop('disabled', true);
+    }
+
     const PL = [1, 2, 3, 4, 5, 6, 7];
     const LA_LIGA = [8, 9, 17];
     const bundesliga = [10, 16, 18, 20];
     const ITA = [12, 13, 14, 19];
 
-    $('#adversario_existente').val('');
-
-    if(time_principal == psg || time_principal == al_nassr) {
-        $('#nao_existente').prop('checked', true);
-        $('#existente').prop('disabled', true);
-        $('#adversarioNaoExistente').css('display', 'block');
-        if($('#adversarioExistente').css('display') == 'block') {
-            $('#adversarioExistente').css('display', 'none');
-        }
-        $('#adversario_nao_existente').focus();
-    }
-    else {
-        $('#nao_existente').prop('checked', false);
-        $('#adversarioNaoExistente').css('display', 'none');
-        $('#existente').prop('disabled', false);
-    }
-
-    // regras para times da mesma liga
     if(PL.includes(Number(time_principal))) {
         PL.forEach(function(times) {
             $("#adversario_existente option[value="+times+"]").show();
@@ -113,5 +81,3 @@ $('#time_principal').change(function() {
         $('#adversario_existente').find('option').hide();
     }
 });
-
-$('#adversario_existente').find('option').hide();
