@@ -4,7 +4,7 @@
 
 @section('title', 'Agenda Jogos')
 
-@section('content_header', 'Tela para adicionar partidas')
+@section('content_header', 'Cadastrar Partida')
 
 @section('content')
     <div class="row">

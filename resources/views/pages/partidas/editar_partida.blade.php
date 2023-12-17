@@ -2,7 +2,7 @@
 
 @section('title', 'Agenda Jogos')
 
-@section('content_header', 'Editar partida')
+@section('content_header', 'Editar Partida')
 
 @section('content')
     <div class="row">
