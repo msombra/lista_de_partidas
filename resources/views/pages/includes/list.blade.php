@@ -9,7 +9,7 @@
     <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
     {{-- AÇÕES --}}
     <td class="acoes text-right" style="display: none;">
-        <form action="{{ route('partidas.deletar_partida', $partida->id) }}" method="post">
+        <form action="{{ route('partidas.deletar_partida', $partida->id) }}" id="delete_form" method="post">
             @csrf
             @method('delete')
             <a href="{{ route('partidas.editar_partida', $partida->id) }}" class="btn btn-outline-primary btn-sm" title="Editar partida">

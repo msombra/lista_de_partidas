@@ -5,6 +5,12 @@ $('#limpar').click(function(e) {
     }
 });
 
+$('#delete_form').submit(function(e) {
+    if (!confirm('Deseja excluir partida?')) {
+        e.preventDefault(); // Impede o comportamento padrão do link
+    }
+});
+
 // Função que destaca partida ao clique
 $('.destacar').click(function() {
     $(this).toggleClass('bg-warning');

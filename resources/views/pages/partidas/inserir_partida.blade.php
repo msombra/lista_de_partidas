@@ -131,7 +131,6 @@
 
 @section('js')
     <script src="../js/regras_insert.js"></script>
-    <script src="../js/functions.js"></script>
 
     @if(session('toast_clear'))
         <script>

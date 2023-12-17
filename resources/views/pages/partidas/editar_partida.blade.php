@@ -130,19 +130,4 @@
 @section('js')
     <script src="../js/regras_insert.js"></script>
     <script src="../js/regras_edit.js"></script>
-    <script src="../js/functions.js"></script>
-    {{-- <script>
-        $(document).ready(function() {
-            if ($('#nao_existente').prop('checked')) {
-                $('#adversarioNaoExistente').css('display', 'block');
-            }
-            else {
-                $('#adversarioExistente').css('display', 'block');
-            }
-
-            if($('#time_principal').val() == 11) {
-                $('#existente').prop('disabled', true);
-            }
-        });
-    </script> --}}
 @stop
