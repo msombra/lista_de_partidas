@@ -9,5 +9,7 @@ class TblPartidasTimes extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'liga'];
+
+    public $timestamps = false;
 }

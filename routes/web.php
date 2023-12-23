@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuPartidasController;
+use App\Http\Controllers\TimesController;
 use App\Http\Controllers\AcordoController;
 use App\Http\Controllers\TesteController;
 
@@ -32,6 +33,10 @@ Route::get('/partidas/editar_partida={id}', [MenuPartidasController::class, 'edi
 Route::post('/partidas/update={id}', [MenuPartidasController::class, 'update'])->name('partidas.update');
 Route::delete('/partidas/delete_one={id}', [MenuPartidasController::class, 'deleteOne'])->name('partidas.deletar_partida');
 Route::get('/partidas/delete_all', [MenuPartidasController::class, 'deleteAll'])->name('partidas.limpar_tudo');
+// times
+Route::get('/partidas/times_list', [TimesController::class, 'list'])->name('partidas.times_list');
+Route::get('/partidas/times_insert', [TimesController::class, 'create'])->name('partidas.times_insert');
+Route::post('/partidas/times_store', [TimesController::class, 'store'])->name('partidas.times_store');
 
 // ACORDO
 // Route::get('/acordo/acordo_list', [AcordoController::class, 'list'])->name('acordo.list');

@@ -1,3 +1,4 @@
+{{-- TOASTS PARTIDAS --}}
 @if(session('toast_insert'))
     <script>
         Swal.fire({
@@ -40,6 +41,23 @@
             showConfirmButton: false,
             timer: 3000,
             background: '#FF0000',
+            color: '#fff',
+            iconColor: '#fff',
+        });
+    </script>
+@endif
+
+{{-- TOASTS TIMES --}}
+@if(session('toast_time_insert'))
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Time cadastrado com sucesso!",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            background: '#32CD32',
             color: '#fff',
             iconColor: '#fff',
         });

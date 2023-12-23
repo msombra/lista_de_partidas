@@ -324,6 +324,22 @@ return [
                     'route' => 'partidas.inserir_partida',
                     // 'url' => '#'
                 ],
+                [
+                    'text'    => 'Times',
+                    'icon'  => 'fas fa-fw fa-users',
+                    'submenu' => [
+                        [
+                            'text'  => 'Lista',
+                            'route' => 'partidas.times_list',
+                            // 'url' => '#'
+                        ],
+                        [
+                            'text'  => 'Cadastrar',
+                            'route' => 'partidas.times_insert',
+                            // 'url' => '#'
+                        ],
+                    ],
+                ],
             ]
         ],
 
