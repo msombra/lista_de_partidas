@@ -11,6 +11,12 @@
 @section('content')
     <div class="row">
         <div class="col-6 mx-auto">
+            {{-- BOTÕES --}}
+            <div class="text-right">
+                <a href="{{ route('partidas.index') }}" class="btn btn-sm btn-warning" title="Ir para listagem das partidas">Listagem partidas</a>
+                <a href="{{ route('partidas.times_insert') }}" class="btn btn-sm btn-primary" title="Cadastrar um time existente">Cadastrar Time</a>
+            </div>
+
             <div class="card mt-3 p-3">
                 <div class="card-body table-responsive p-0">
                     <table class="table table-sm table-striped text-nowrap text-center" id="tbl_times" style="cursor: default">
@@ -27,13 +33,13 @@
                                     <td>{{ $time->nome }}</td>
                                     <td>{{ $time->liga }}</td>
                                     <td>
-                                        <form action="#" id="" method="post">
+                                        <form action="{{ route('partidas.times_delete', $time->id) }}" class="form_delete" method="post">
                                             @csrf
                                             @method('delete')
-                                            <a href="#" class="btn btn-success btn-sm" title="Editar partida">
+                                            <a href="{{ route('partidas.times_edit', $time->id) }}" class="btn btn-success btn-sm" title="Editar time">
                                                 <i class="fas fa-fw fa-edit"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Deletar partida">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Deletar time">
                                                 <i class="fas fa-fw fa-trash"></i>
                                             </button>
                                         </form>
@@ -49,7 +55,18 @@
 @stop
 
 @section('js')
+    {{-- Carrega o script da Datatable --}}
     <script src="../js/datatable.js"></script>
+
+    {{-- Script da função que exibe um confirm ao deletar um time --}}
+    <script>
+        $('.form_delete').submit(function(e) {
+            if (!confirm('Deseja excluir o time?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
     {{-- Carrega as toasts --}}
     @include('pages.includes.toasts')
 @stop

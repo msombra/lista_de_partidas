@@ -37,6 +37,9 @@ Route::get('/partidas/delete_all', [MenuPartidasController::class, 'deleteAll'])
 Route::get('/partidas/times_list', [TimesController::class, 'list'])->name('partidas.times_list');
 Route::get('/partidas/times_insert', [TimesController::class, 'create'])->name('partidas.times_insert');
 Route::post('/partidas/times_store', [TimesController::class, 'store'])->name('partidas.times_store');
+Route::get('/partidas/times_edit={id}', [TimesController::class, 'edit'])->name('partidas.times_edit');
+Route::post('/partidas/times_update={id}', [TimesController::class, 'update'])->name('partidas.times_update');
+Route::delete('/partidas/times_delete={id}', [TimesController::class, 'delete'])->name('partidas.times_delete');
 
 // ACORDO
 // Route::get('/acordo/acordo_list', [AcordoController::class, 'list'])->name('acordo.list');

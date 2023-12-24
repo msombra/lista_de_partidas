@@ -12,12 +12,12 @@
             {{-- BOTÕES --}}
             <div class="text-right">
                 {{-- INSERIR --}}
-                <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-success" title="Inserir partida">Inserir</a>
+                <a href="{{ route('partidas.inserir_partida') }}" class="btn btn-sm btn-success" title="Inserir partida">Inserir</a>
                 @if (!$partidas->isEmpty())
                     {{-- LIMPAR --}}
-                    <a href="{{ route('partidas.limpar_tudo') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
+                    <a href="{{ route('partidas.limpar_tudo') }}" id="limpar" class="btn btn-sm btn-danger" title="Limpar listagem">Limpar</a>
                     {{-- MOSTRAR AÇÕES --}}
-                    <button class="btn btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
+                    <button class="btn btn-sm btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
                 @endif
             </div>
 

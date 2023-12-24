@@ -63,3 +63,35 @@
         });
     </script>
 @endif
+
+@if(session('toast_time_update'))
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Time editado com sucesso!",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            background: '#007BFF',
+            color: '#fff',
+            iconColor: '#fff',
+        });
+    </script>
+@endif
+
+@if(session('toast_time_delete'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Time deletado com sucesso!",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            background: '#FF0000',
+            color: '#fff',
+            iconColor: '#fff',
+        });
+    </script>
+@endif
