@@ -93,6 +93,7 @@
                                 <option value="">Selecione</option>
                                 <option value="1">Sábado</option>
                                 <option value="2">Domingo</option>
+                                <option value="3">Segunda</option>
                             </select>
                             {{-- @if ($errors->has('dia'))
                                 <small class="text-danger"><i>

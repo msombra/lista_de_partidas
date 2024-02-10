@@ -91,6 +91,7 @@
                                 <option value="">Selecione</option>
                                 <option value="1" {{ $partida->dia == 1 ? 'selected' : '' }}>Sábado</option>
                                 <option value="2" {{ $partida->dia == 2 ? 'selected' : '' }}>Domingo</option>
+                                <option value="3" {{ $partida->dia == 3 ? 'selected' : '' }}>Segunda</option>
                             </select>
                             {{-- @if ($errors->has('dia'))
                                 <small class="text-danger"><i>

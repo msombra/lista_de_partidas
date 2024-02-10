@@ -76,6 +76,9 @@ class TimesController extends Controller
     public function update($id, Request $request)
     {
         $time = TblPartidasTimes::find($id);
+        
+        $this->regras['nome'] = 'required|min:3';
+        $this->mensagens['nome.unique'] = '';
 
         $validar = $this->validar($request);
 

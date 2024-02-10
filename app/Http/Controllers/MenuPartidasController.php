@@ -29,7 +29,15 @@ class MenuPartidasController extends Controller
             ->orderBy('horario')
             ->get();
 
-        return view('pages.partidas.listagem', compact('partidas', 'partidas_sabado', 'partidas_domingo'));
+        $partidas_segunda = DB::table('tbl_partidas as p')
+            ->select('p.id', 'tp.nome as time_principal', 'adversario_nao_existente', 'ta.nome as adversario_existente', 'horario')
+            ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
+            ->leftJoin('tbl_partidas_times as ta', 'p.adversario_existente', '=', 'ta.id')
+            ->where('dia', 3)
+            ->orderBy('horario')
+            ->get();
+
+        return view('pages.partidas.listagem', compact('partidas', 'partidas_sabado', 'partidas_domingo', 'partidas_segunda'));
     }
 
     public function create()

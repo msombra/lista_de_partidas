@@ -52,7 +52,7 @@
                     {{-- BOTÕES --}}
                     <div class="card-footer text-center">
                         <a href="{{ route('partidas.times_list') }}" class="btn btn-outline-secondary mx-2">Voltar</a>
-                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                        <button type="submit" class="btn btn-primary" id="atualizar" disabled>Atualizar</button>
                     </div>
                 </form>
             </div>
@@ -62,4 +62,38 @@
 
 @section('js')
     <script src="../js/regras_time.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Armazena os valores iniciais dos campos
+            var initialValues = {
+                'time': $('#time').val(),
+                'liga': $('#liga').val(),
+            };
+
+            // Atualiza o estado do botão com base nos valores atuais
+            function updateButtonState() {
+                var isFormChanged = false;
+
+                // Verifica se algum campo foi alterado
+                $.each(initialValues, function (fieldName, initialValue) {
+                    var currentValue = $('#' + fieldName).val();
+                    if (currentValue !== initialValue) {
+                        isFormChanged = true;
+                        return false; // Sai do loop se encontrar uma alteração
+                    }
+                });
+
+                // Habilita/desabilita o botão com base no estado atual
+                $('#atualizar').prop('disabled', !isFormChanged);
+            }
+
+            // Monitora as alterações nos campos
+            $('#time, #liga').on('input change', function () {
+                updateButtonState();
+            });
+
+            // Atualiza o estado do botão inicialmente
+            updateButtonState();
+        });
+    </script>
 @endsection

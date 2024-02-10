@@ -41,13 +41,6 @@ Route::get('/partidas/times_edit={id}', [TimesController::class, 'edit'])->name(
 Route::post('/partidas/times_update={id}', [TimesController::class, 'update'])->name('partidas.times_update');
 Route::delete('/partidas/times_delete={id}', [TimesController::class, 'delete'])->name('partidas.times_delete');
 
-// ACORDO
-// Route::get('/acordo/acordo_list', [AcordoController::class, 'list'])->name('acordo.list');
-// Route::get('/acordo/acordo_insert', [AcordoController::class, 'create'])->name('acordo.create');
-// Route::post('/acordo/store', [AcordoController::class, 'store'])->name('acordo.store');
-// Route::get('/acordo/acorco_edit={id}', [AcordoController::class, 'edit'])->name('acordo.edit');
-// Route::post('/acordo/acorco_edit={id}/update', [AcordoController::class, 'update'])->name('acordo.update');
-
 // teste
 // Route::get('/teste', [TesteController::class, 'index'])->name('teste.index');
 // Route::get('/teste/cadastrar', [TesteController::class, 'create'])->name('teste.create');
