@@ -3,7 +3,8 @@
     <script>
         Swal.fire({
             icon: "success",
-            title: "Partida incluída com sucesso!",
+            // title: "Partida incluída com sucesso!",
+            title: "{{ session('toast_insert') }}",
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -19,7 +20,7 @@
     <script>
         Swal.fire({
             icon: "success",
-            title: "Partida atualizada com sucesso!",
+            title: "{{ session('toast_update') }}",
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -35,7 +36,7 @@
     <script>
         Swal.fire({
             icon: "error",
-            title: "Partida deletada com sucesso!",
+            title: "{{ session('toast_delete') }}",
             toast: true,
             position: "top-end",
             showConfirmButton: false,

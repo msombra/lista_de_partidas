@@ -9,37 +9,83 @@ use Illuminate\Support\Facades\DB;
 
 class MenuPartidasController extends Controller
 {
+    // =====================================================
+    // MÉTODOS PRIVADOS
+    // =====================================================
+
+    // Definindo Regras
+    private $regras;
+    private $mensagens;
+
+    public function __construct()
+    {
+        $obrigatorio = 'Campo de preenchimento obrigatório';
+        $unique = 'Time já inserido na listagem';
+
+        $this->regras = [
+            'time_principal'  => 'required|unique:tbl_partidas,time_principal',
+            'tipo_adversario' => 'required',
+            'time_adversario' => 'required|unique:tbl_partidas,time_adversario',
+            'dia'             => 'required',
+            'horario'         => 'required',
+        ];
+
+        $this->mensagens = [
+            'time_principal.required'  => $obrigatorio,
+            'time_principal.unique'    => $unique,
+
+            'time_adversario.required' => $obrigatorio,
+            'time_adversario.unique'   => $unique,
+
+            'dia.required'             => $obrigatorio,
+            'horario.required'         => $obrigatorio,
+        ];
+    }
+
+    // Validando Regras
+    private function validar(Request $request)
+    {
+        return $request->validate($this->regras, $this->mensagens);
+    }
+
+    // Selecionando registro para rotina de update ou delete
+    private function find_id($id)
+    {
+        return TblPartidas::find($id);
+    }
+
+
+    // =====================================================
+    // LISTAGEM
+    // =====================================================
+    private function buscarPartidasPorDia($dia)
+    {
+        return DB::table('tbl_partidas as p')
+                 ->select('p.id', 'tp.nome as time_principal', 'time_adversario', 'horario')
+                 ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
+                 ->where('dia', $dia)
+                 ->orderBy('horario')
+                 ->get()
+                 ->toArray();
+    }
+
     public function index()
     {
         $partidas = TblPartidas::all();
 
-        $partidas_sabado = DB::table('tbl_partidas as p')
-            ->select('p.id', 'tp.nome as time_principal', 'adversario_nao_existente', 'ta.nome as adversario_existente', 'horario')
-            ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
-            ->leftJoin('tbl_partidas_times as ta', 'p.adversario_existente', '=', 'ta.id')
-            ->where('dia', 1)
-            ->orderBy('horario')
-            ->get();
+        $partidasPorDia = [];
 
-        $partidas_domingo = DB::table('tbl_partidas as p')
-            ->select('p.id', 'tp.nome as time_principal', 'adversario_nao_existente', 'ta.nome as adversario_existente', 'horario')
-            ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
-            ->leftJoin('tbl_partidas_times as ta', 'p.adversario_existente', '=', 'ta.id')
-            ->where('dia', 2)
-            ->orderBy('horario')
-            ->get();
+        for ($dia = 1; $dia <= 3; $dia++) {
+            $partidasPorDia[$dia] = $this->buscarPartidasPorDia($dia);
+        }
 
-        $partidas_segunda = DB::table('tbl_partidas as p')
-            ->select('p.id', 'tp.nome as time_principal', 'adversario_nao_existente', 'ta.nome as adversario_existente', 'horario')
-            ->leftJoin('tbl_partidas_times as tp', 'p.time_principal', '=', 'tp.id')
-            ->leftJoin('tbl_partidas_times as ta', 'p.adversario_existente', '=', 'ta.id')
-            ->where('dia', 3)
-            ->orderBy('horario')
-            ->get();
-
-        return view('pages.partidas.listagem', compact('partidas', 'partidas_sabado', 'partidas_domingo', 'partidas_segunda'));
+        return view('pages.partidas.listagem', compact('partidas', 'partidasPorDia'));
     }
 
+
+    // =====================================================
+    // CREATE
+    // =====================================================
     public function create()
     {
         $times = TblPartidasTimes::all();
@@ -49,42 +95,21 @@ class MenuPartidasController extends Controller
 
     public function store(Request $request)
     {
-        $regras = [
-            'time_principal' => 'required|unique:tbl_partidas,time_principal',
-            // 'adversario_nao_existente' => 'required_if:adversario_existente,null|unique:tbl_partidas,adversario_nao_existente',
-            // 'adversario_existente' => 'required_if:adversario_nao_existente,null|unique:tbl_partidas,adversario_existente',
-            'tipo_adversario' => 'required',
-            'adversario_nao_existente' => 'nullable',
-            'adversario_existente' => 'nullable',
-            'dia' => 'required',
-            'horario' => 'required'
-        ];
-
-        // $msg = 'Campo de preenchimento obrigatório';
-        // $msg2 = 'Valor do campo já inserido';
-        // $mensagens = [
-        //     'time_principal.required' => $msg,
-        //     'time_principal.unique' => $msg2,
-        //     'adversario_nao_existente.required' => $msg,
-        //     // 'adversario_nao_existente.unique' => $msg2,
-        //     'adversario_existente.required' => $msg,
-        //     // 'adversario_existente.unique' => $msg2,
-        //     'dia' => $msg,
-        //     'horario' => $msg
-        // ];
-
-        $validar = $request->validate($regras);
-
-        $partida = $request->all();
+        $validar = $this->validar($request);
 
         TblPartidas::create($validar);
 
         return redirect()->route('partidas.index')->with('toast_insert', 'Partida incluída com sucesso!');
     }
 
+
+    // =====================================================
+    // EDIT
+    // =====================================================
     public function edit($id)
     {
-        $partida = TblPartidas::find($id);
+        $partida = $this->find_id($id);
+
         $times = TblPartidasTimes::all();
 
         if(!$partida) {
@@ -96,18 +121,14 @@ class MenuPartidasController extends Controller
 
     public function update($id, Request $request)
     {
-        $partida = TblPartidas::find($id);
+        $partida = $this->find_id($id);
 
-        $validar = $request->validate([
-            'time_principal' => 'required',
-            // 'adversario_nao_existente' => 'required_if:adversario_existente,null|unique:tbl_partidas,adversario_nao_existente',
-            // 'adversario_existente' => 'required_if:adversario_nao_existente,null|unique:tbl_partidas,adversario_existente',
-            'tipo_adversario' => 'required',
-            'adversario_nao_existente' => 'nullable',
-            'adversario_existente' => 'nullable',
-            'dia' => 'required',
-            'horario' => 'required'
-        ]);
+        $this->regras['time_principal'] = 'required';
+        $this->mensagens['time_principal.unique'] = '';
+        $this->regras['time_adversario'] = 'required';
+        $this->mensagens['time_adversario.unique'] = '';
+
+        $validar = $this->validar($request);
 
         if(!$partida) {
             return redirect()->route('partidas.index');
@@ -118,10 +139,14 @@ class MenuPartidasController extends Controller
         return redirect()->route('partidas.index')->with('toast_update', 'Partida atualizada com sucesso!');
     }
 
+
+    // =====================================================
+    // DELETE
+    // =====================================================
     // Função que deleta um registro que for selecionado
     public function deleteOne($id)
     {
-        $partida = TblPartidas::find($id);
+        $partida = $this->find_id($id);
 
         if(!$partida) {
             return redirect()->route('partidas.index');

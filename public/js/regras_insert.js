@@ -115,3 +115,11 @@ $('#time_principal').change(function() {
 });
 
 $('#adversario_existente').find('option').hide();
+
+// $('#time_principal').click(function() {
+//     var input = $('#time_principal');
+
+//     if(input.hasClass('is-invalid')) {
+//         input.removeClass('is-invalid');
+//     }
+// });

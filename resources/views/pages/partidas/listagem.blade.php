@@ -36,11 +36,11 @@
                         {{-- cabeçalho --}}
                         @include('pages.includes.cabecalho_table', ['titulo' => 'Sábado'])
                         {{-- listagem --}}
-                        @foreach ($partidas_sabado as $partida)
+                        @foreach ($partidasPorDia[1] as $partida)
                             @include('pages.includes.list')
                         @endforeach
                         {{-- caso não exista partidas --}}
-                        @if ($partidas_sabado->isEmpty())
+                        @if ($partidasPorDia[1] == null)
                             @include('pages.includes.linha_sem_partidas', ['dia' => 'sábado'])
                         @endif
                         {{-- ================================================================================ --}}
@@ -50,11 +50,11 @@
                         {{-- cabeçalho --}}
                         @include('pages.includes.cabecalho_table', ['titulo' => 'Domingo'])
                         {{-- listagem --}}
-                        @foreach ($partidas_domingo as $partida)
+                        @foreach ($partidasPorDia[2] as $partida)
                             @include('pages.includes.list')
                         @endforeach
                         {{-- caso não exista partidas --}}
-                        @if ($partidas_domingo->isEmpty())
+                        @if ($partidasPorDia[2] == null)
                             @include('pages.includes.linha_sem_partidas', ['dia' => 'domingo'])
                         @endif
                         {{-- ================================================================================ --}}
@@ -62,11 +62,11 @@
                         {{-- ============================== PARTIDAS NA SEGUNDA ============================== --}}
 
                         {{-- Se houver partidas na segunda --}}
-                        @if (!$partidas_segunda->isEmpty())
+                        @if ($partidasPorDia[3] != null)
                             {{-- cabeçalho --}}
                             @include('pages.includes.cabecalho_table', ['titulo' => 'Segunda'])
                             {{-- listagem --}}
-                            @foreach ($partidas_segunda as $partida)
+                            @foreach ($partidasPorDia[3] as $partida)
                                 @include('pages.includes.list')
                             @endforeach
                         @endif
