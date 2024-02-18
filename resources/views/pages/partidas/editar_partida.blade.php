@@ -16,16 +16,16 @@
                     <div class="card-body row">
                         {{-- Time Principal --}}
                         <div class="form-group col-12">
-                            <label for="time_principal">Time principal</label>
-                            <select class="form-control @if ($errors->has('time_principal')) is-invalid @endif" name="time_principal" id="time_principal">
+                            <label for="{{ $p->time_principal }}">Time principal</label>
+                            <select class="form-control @if ($errors->has($p->time_principal)) is-invalid @endif" name="{{ $p->time_principal }}" id="{{ $p->time_principal }}">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->id }}" {{ old('time_principal', $partida->time_principal) == $time->id ? 'selected' : '' }}>
+                                    <option value="{{ $time->id }}" {{ old($p->time_principal, $partida->time_principal) == $time->id ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
                             </select>
-                            @include('pages.includes.msg_errors', ['campo' => 'time_principal'])
+                            @include('pages.includes.msg_errors', ['campo' => $p->time_principal])
                         </div>
 
                         {{-- Tipo Adversário --}}
@@ -36,12 +36,12 @@
                             <div class="form-check mt-2">
                                 {{-- Opção 1 --}}
                                 <div>
-                                    <input class="form-check-input" type="radio" id="nao_existente" name="tipo_adversario" value="1" checked {{ old('tipo_adversario', $partida->tipo_adversario) == 1 ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" id="nao_existente" name="{{ $p->tipo_adversario }}" value="1" checked {{ old($p->tipo_adversario, $partida->tipo_adversario) == 1 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="nao_existente">Não Existente</label>
                                 </div>
                                 {{-- Opção 2 --}}
                                 <div>
-                                    <input class="form-check-input" type="radio" id="existente" name="tipo_adversario" value="2" {{ old('tipo_adversario', $partida->tipo_adversario) == 2 ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="radio" id="existente" name="{{ $p->tipo_adversario }}" value="2" {{ old($p->tipo_adversario, $partida->tipo_adversario) == 2 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="existente">Existente</label>
                                 </div>
                             </div>
@@ -51,40 +51,37 @@
                         <div class="form-group col-12">
                             <label>Time adversário</label>
                             {{-- Adversário Input --}}
-                            <input type="text" class="form-control @if ($errors->has('time_adversario')) is-invalid @endif" id="adversario_input" name="time_adversario" value="{{ old('time_adversario', $partida->time_adversario) }}">
+                            <input type="text" class="form-control @if ($errors->has($p->time_adversario)) is-invalid @endif" id="adversario_input" name="{{ $p->time_adversario }}" value="{{ old($p->time_adversario, $partida->time_adversario) }}">
                             {{-- Adversário Select --}}
-                            <select hidden class="form-control @if ($errors->has('time_adversario')) is-invalid @endif" name="" id="adversario_select">
+                            <select hidden class="form-control @if ($errors->has($p->time_adversario)) is-invalid @endif" name="" id="adversario_select">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->nome }}" {{ old('time_adversario', $partida->time_adversario) == $time->nome ? 'selected' : '' }}>
+                                    <option value="{{ $time->nome }}" {{ old($p->time_adversario, $partida->time_adversario) == $time->nome ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
                             </select>
-                            @include('pages.includes.msg_errors', ['campo' => 'time_adversario'])
+                            @include('pages.includes.msg_errors', ['campo' => $p->time_adversario])
                         </div>
 
                         {{-- Dia da Partida --}}
                         <div class="form-group col-6">
-                            <label for="dia">Dia da partida</label>
-                            <select class="form-control @if ($errors->has('dia')) is-invalid @endif" name="dia" id="dia">
-                                @php
-                                    $dia = 'dia';
-                                    $data = $partida->dia;
-                                @endphp
+                            <label for="{{ $p->f_dia }}">Dia da partida</label>
+                            <select class="form-control @if ($errors->has($p->f_dia)) is-invalid @endif" name="{{ $p->f_dia }}" id="{{ $p->f_dia }}">
+                                @php $data = $partida->dia; @endphp
                                 <option value="">Selecione</option>
-                                <option value="1" {{ old($dia, $data) == 1 ? 'selected' : '' }}>Sábado</option>
-                                <option value="2" {{ old($dia, $data) == 2 ? 'selected' : '' }}>Domingo</option>
-                                <option value="3" {{ old($dia, $data) == 3 ? 'selected' : '' }}>Segunda</option>
+                                <option value="1" {{ old($p->f_dia, $data) == 1 ? 'selected' : '' }}>Sábado</option>
+                                <option value="2" {{ old($p->f_dia, $data) == 2 ? 'selected' : '' }}>Domingo</option>
+                                <option value="3" {{ old($p->f_dia, $data) == 3 ? 'selected' : '' }}>Segunda</option>
                             </select>
-                            @include('pages.includes.msg_errors', ['campo' => 'dia'])
+                            @include('pages.includes.msg_errors', ['campo' => $p->f_dia])
                         </div>
 
                         {{-- Horário do Jogo --}}
                         <div class="form-group col-6">
-                            <label for="horario">Horário do Jogo</label>
-                            <input type="time" class="form-control @if ($errors->has('horario')) is-invalid @endif" id="horario" name="horario" value="{{ old('horario', $partida->horario ) }}">
-                            @include('pages.includes.msg_errors', ['campo' => 'horario'])
+                            <label for="{{ $p->horario }}">Horário do Jogo</label>
+                            <input type="time" class="form-control @if ($errors->has($p->horario)) is-invalid @endif" id="{{ $p->horario }}" name="{{ $p->horario }}" value="{{ old($p->horario, $partida->horario ) }}">
+                            @include('pages.includes.msg_errors', ['campo' => $p->horario])
                         </div>
                     </div>
 

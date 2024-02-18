@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class MenuPartidasController extends Controller
 {
+    public $time_principal = 'time_principal';
+    public $tipo_adversario = 'tipo_adversario';
+    public $time_adversario = 'time_adversario';
+    public $f_dia = 'dia';
+    public $horario = 'time_principal';
     // =====================================================
     // MÉTODOS PRIVADOS
     // =====================================================
@@ -86,11 +91,11 @@ class MenuPartidasController extends Controller
     // =====================================================
     // CREATE
     // =====================================================
-    public function create()
+    public function create(MenuPartidasController $p)
     {
         $times = TblPartidasTimes::all();
 
-        return view('pages.partidas.inserir_partida', compact('times'));
+        return view('pages.partidas.inserir_partida', compact('times', 'p'));
     }
 
     public function store(Request $request)
@@ -106,7 +111,7 @@ class MenuPartidasController extends Controller
     // =====================================================
     // EDIT
     // =====================================================
-    public function edit($id)
+    public function edit($id, MenuPartidasController $p)
     {
         $partida = $this->find_id($id);
 
@@ -116,7 +121,7 @@ class MenuPartidasController extends Controller
             return redirect()->route('partidas.index');
         }
 
-        return view('pages.partidas.editar_partida', compact('partida', 'times'));
+        return view('pages.partidas.editar_partida', compact('partida', 'times', 'p'));
     }
 
     public function update($id, Request $request)
