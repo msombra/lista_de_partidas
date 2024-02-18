@@ -105,4 +105,14 @@
 @section('js')
     {{-- <script src="../js/regras_insert.js"></script> --}}
     <script src="../js/regras_teste.js"></script>
+    <script>
+        $(function() {
+            let time_principal = $('#time_principal').val();
+            let psg = 11;
+
+            if(time_principal == psg) {
+                $('#existente').prop('disabled', true);
+            }
+        });
+    </script>
 @stop

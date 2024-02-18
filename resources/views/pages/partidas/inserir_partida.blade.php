@@ -68,7 +68,7 @@
                         {{-- Dia da Partida --}}
                         <div class="form-group col-6">
                             <label for="dia">Dia da partida</label>
-                            <select class="form-control @if ($errors->has('time_principal')) is-invalid @endif" name="dia" id="dia">
+                            <select class="form-control @if ($errors->has('dia')) is-invalid @endif" name="dia" id="dia">
                                 <option value="">Selecione</option>
                                 <option value="1" {{ old('dia') == 1 ? 'selected' : '' }}>Sábado</option>
                                 <option value="2" {{ old('dia') == 2 ? 'selected' : '' }}>Domingo</option>
@@ -81,7 +81,7 @@
                         {{-- Horário do Jogo --}}
                         <div class="form-group col-6">
                             <label for="horario">Horário do Jogo</label>
-                            <input type="time" class="form-control @if ($errors->has('time_principal')) is-invalid @endif" id="horario" name="horario" value="{{ old('horario') }}">
+                            <input type="time" class="form-control @if ($errors->has('horario')) is-invalid @endif" id="horario" name="horario" value="{{ old('horario') }}">
                             @include('pages.includes.msg_errors', ['campo' => 'horario'])
                         </div>
                     </div>

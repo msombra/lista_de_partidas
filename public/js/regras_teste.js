@@ -34,3 +34,17 @@ $(window).on("load", function() {
 $("#dia").change(function(){
     $('#horario').focus();
 });
+
+$('#time_principal').change(function() {
+    let time_principal = $(this).val();
+    let psg = 11;
+    let existente = $('#existente');
+
+    if(time_principal == psg) {
+        existente.prop('disabled', true);
+        $('#adversario_input').focus();
+    }
+    else {
+        existente.prop('disabled', false);
+    }
+});
