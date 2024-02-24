@@ -13,7 +13,7 @@ class MenuPartidasController extends Controller
     public $tipo_adversario = 'tipo_adversario';
     public $time_adversario = 'time_adversario';
     public $f_dia = 'dia';
-    public $horario = 'time_principal';
+    public $horario = 'horario';
     // =====================================================
     // MÉTODOS PRIVADOS
     // =====================================================
