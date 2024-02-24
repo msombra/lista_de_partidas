@@ -14,39 +14,23 @@
                         {{-- TIME --}}
                         <div>
                             <label for="time">Time</label>
-                            <input type="text" class="form-control @if ($errors->has('nome')) is-invalid @endif" id="time" name="nome" value="{{ $time->nome }}">
+                            <input type="text" class="form-control @if ($errors->has($t->nome)) is-invalid @endif" id="time" name="{{ $t->nome }}" value="{{ old($t->nome, $time->nome) }}">
                             {{-- Mensagens de Erro --}}
-                            @if ($errors->has('nome'))
-                                <small class="text-danger" id="error_time"><i>
-                                    @foreach($errors->get('nome') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </i></small>
-
-                                <script>
-                                    document.getElementById('time').focus();
-                                </script>
-                            @endif
+                            @include('pages.includes.msg_errors', ['campo' => $t->nome])
                         </div>
                         {{-- LIGA --}}
                         <div class="my-3">
-                            <label for="liga">Liga</label>
-                            <select class="form-control @if ($errors->has('liga')) border-danger @endif" name="liga" id="liga">
+                            <label for={{ $t->liga }}>Liga</label>
+                            <select class="form-control @if ($errors->has($t->liga)) border-danger @endif" name={{ $t->liga }} id={{ $t->liga }}>
                                 <option value="">Selecione</option>
                                 @foreach ($ligas as $liga)
-                                    <option value="{{ $liga->id }}" {{ $time->liga == $liga->id ? 'selected' : '' }}>
+                                    <option value="{{ $liga->id }}" {{ old($t->liga, $time->liga) == $liga->id ? 'selected' : '' }}>
                                         {{ $liga->nome }}
                                     </option>
                                 @endforeach
                             </select>
                             {{-- Mensagens de Erro --}}
-                            @if ($errors->has('liga'))
-                                <small class="text-danger msg-error" id="error_liga"><i>
-                                    @foreach($errors->get('liga') as $error)
-                                        {{ $error }}
-                                    @endforeach
-                                </i></small>
-                            @endif
+                            @include('pages.includes.msg_errors', ['campo' => $t->liga])
                         </div>
                     </div>
                     {{-- BOTÕES --}}

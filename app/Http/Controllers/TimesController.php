@@ -8,32 +8,50 @@ use App\Models\TblPartidasTimes;
 
 class TimesController extends Controller
 {
+    // Atributos públicos
+    public $nome = 'nome';
+    public $liga = 'liga';
+    // Atributos Privados
     private $regras;
-    private $obrigatorio;
     private $mensagens;
 
+    // =====================================================
+    // CONSTRUCT
+    // =====================================================
     public function __construct()
     {
+        $obrigatorio = 'Campo de preenchimento obrigatório';
+
         $this->regras = [
             'nome' => 'required|unique:tbl_partidas_times,nome|min:3',
             'liga' => 'required'
         ];
 
-        $this->obrigatorio = 'Campo de preenchimento obrigatório';
-
         $this->mensagens = [
-            'nome.required' => $this->obrigatorio,
-            'liga.required' => $this->obrigatorio,
-            'nome.unique' => 'Esse nome já existe na lista',
+            'nome.required' => $obrigatorio,
+            'liga.required' => $obrigatorio,
+            'nome.unique' => 'O time já existe na lista',
             'nome.min' => 'O nome do time deve conter no mínimo 3 caracteres'
         ];
     }
 
+    // =====================================================
+    // PRIVATE METHODS
+    // =====================================================
     private function validar(Request $request)
     {
         return $request->validate($this->regras, $this->mensagens);
     }
 
+    private function find_id($id)
+    {
+        return TblPartidasTimes::find($id);
+    }
+
+
+    // =====================================================
+    // INDEX
+    // =====================================================
     public function list()
     {
         $tbl_times = DB::table('tbl_partidas_times as pt')
@@ -45,11 +63,15 @@ class TimesController extends Controller
         return view('pages.partidas.times.times_list', compact('tbl_times'));
     }
 
-    public function create()
+
+    // =====================================================
+    // CREATE
+    // =====================================================
+    public function create(TimesController $t)
     {
         $ligas = DB::table('tbl_partidas_ligas')->get();
 
-        return view('pages.partidas.times.times_insert', compact('ligas'));
+        return view('pages.partidas.times.times_insert', compact('ligas', 't'));
     }
 
     public function store(Request $request)
@@ -61,22 +83,27 @@ class TimesController extends Controller
         return redirect()->route('partidas.times_list')->with('toast_time_insert', 'Time cadastrado com sucesso!');
     }
 
-    public function edit($id)
+
+    // =====================================================
+    // EDIT
+    // =====================================================
+    public function edit($id, TimesController $t)
     {
-        $time = TblPartidasTimes::find($id);
+        $time = $this->find_id($id);
+
         $ligas = DB::table('tbl_partidas_ligas')->get();
 
-        if(!$time) {
-            return redirect()->route('partidas.times_list');
+        if (!$time) {
+            return redirect()->back();
         }
 
-        return view('pages.partidas.times.times_edit', compact('time', 'ligas'));
+        return view('pages.partidas.times.times_edit', compact('time', 'ligas', 't'));
     }
 
     public function update($id, Request $request)
     {
-        $time = TblPartidasTimes::find($id);
-        
+        $time = $this->find_id($id);
+
         $this->regras['nome'] = 'required|min:3';
         $this->mensagens['nome.unique'] = '';
 
@@ -84,19 +111,20 @@ class TimesController extends Controller
 
         $time->update($validar);
 
-        if(!$time) {
-            return redirect()->route('partidas.times_list');
-        }
+        $this->not_find_redirect_index($time);
 
         return redirect()->route('partidas.times_list')->with('toast_time_update', 'Time atualizado com sucesso!');
     }
 
+    // =====================================================
+    // DELETE
+    // =====================================================
     public function delete($id)
     {
         $time = TblPartidasTimes::find($id);
 
-        if(!$time) {
-            return redirect()->route('partidas.times_list');
+        if (!$time) {
+            return redirect()->back();
         }
 
         $time->delete();

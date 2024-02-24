@@ -29,3 +29,8 @@ $('#liga').click(function() {
     // Adiciona a classe 'd-none' para esconder a mensagem de erro
     $('#error_liga').addClass('d-none');
 });
+
+// Verifica se o campo possui a classe 'is-invalid' antes de definir o foco
+if ($('#time').hasClass('is-invalid')) {
+    $('#time').focus();
+}
