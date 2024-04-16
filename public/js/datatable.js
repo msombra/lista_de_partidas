@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#tbl_times').DataTable({
+    $('.table').DataTable({
         language: {
             url: "../i18n/pt-BR.json"
         },

@@ -19,7 +19,7 @@
 
             <div class="card mt-3 p-3">
                 <div class="card-body table-responsive p-0">
-                    <table class="table table-sm table-striped text-nowrap text-center" id="tbl_times" style="cursor: default">
+                    <table class="table table-sm table-striped text-nowrap text-center" style="cursor: default">
                         <thead>
                             <tr>
                                 <th>Time</th>
