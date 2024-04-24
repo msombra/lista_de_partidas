@@ -111,8 +111,6 @@ class TimesController extends Controller
 
         $time->update($validar);
 
-        $this->not_find_redirect_index($time);
-
         return redirect()->route('partidas.times_list')->with('toast_time_update', 'Time atualizado com sucesso!');
     }
 
