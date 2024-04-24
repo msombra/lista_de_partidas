@@ -39,7 +39,7 @@
                                             <a href="{{ route('partidas.times_edit', $time->id) }}" class="btn btn-success btn-sm" title="Editar time">
                                                 <i class="fas fa-fw fa-edit"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Deletar time">
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Deletar time" onclick="return confirm('Deseja excluir o time?')">
                                                 <i class="fas fa-fw fa-trash"></i>
                                             </button>
                                         </form>
@@ -57,16 +57,6 @@
 @section('js')
     {{-- Carrega o script da Datatable --}}
     <script src="../js/datatable.js"></script>
-
-    {{-- Script da função que exibe um confirm ao deletar um time --}}
-    <script>
-        $('.form_delete').submit(function(e) {
-            if (!confirm('Deseja excluir o time?')) {
-                e.preventDefault();
-            }
-        });
-    </script>
-
     {{-- Carrega as toasts --}}
     @include('pages.includes.toasts')
 @stop

@@ -20,7 +20,7 @@
                 {{-- se houver partidas --}}
                 @if (!$partidas->isEmpty())
                     {{-- Limpar --}}
-                    <a href="{{ route('partidas.limpar_tudo') }}" id="limpar" class="btn btn-danger" title="Limpar listagem">Limpar</a>
+                    <a href="{{ route('partidas.limpar_tudo') }}" class="btn btn-danger" title="Limpar listagem" onclick="return confirm('Deseja limpar a listagem?')">Limpar</a>
                     {{-- Mostrar Ações --}}
                     <button class="btn btn-warning" id="mostrar-acoes" title="Exibir/Esconder ações">Mostrar Ações</button>
                 @endif

@@ -5,7 +5,7 @@
     <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
     {{-- AÇÕES --}}
     <td class="acoes text-right" style="display: none;">
-        <form action="{{ route('partidas.deletar_partida', $partida->id) }}" id="delete_form" method="post">
+        <form action="{{ route('partidas.deletar_partida', $partida->id) }}" method="post">
             @csrf
             @method('delete')
             {{-- Editar --}}
@@ -13,7 +13,7 @@
                 <i class="fas fa-fw fa-edit"></i>
             </a>
             {{-- Deletar --}}
-            <button type="submit" class="btn btn-danger btn-sm" title="Deletar partida">
+            <button type="submit" class="btn btn-danger btn-sm" title="Deletar partida" onclick="return confirm('Deseja excluir partida?')">
                 <i class="fas fa-fw fa-trash"></i>
             </button>
         </form>
