@@ -1,7 +1,7 @@
 <tr class="destacar" title="Destacar partida">
     <td>{{ $partida->time_principal }}</td>
     <td>vs.</td>
-    <td>{{ ucwords($partida->time_adversario) }}</td>
+    <td>{{ $partida->time_adversario }}</td>
     <td>{{ date("H\hi", strtotime($partida->horario)) }}</td>
     {{-- AÇÕES --}}
     <td class="acoes text-right" style="display: none;">
