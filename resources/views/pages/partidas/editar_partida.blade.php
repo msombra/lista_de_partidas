@@ -14,13 +14,27 @@
                 <form action="{{ route('partidas.update', $partida->id) }}" method="post">
                     @csrf
                     <div class="card-body row">
+                        {{-- Liga --}}
+                        <div class="form-group col-12">
+                            <label for="{{ $p->liga }}">Liga</label>
+                            <select class="form-control @if ($errors->has($p->liga)) is-invalid @endif" id="{{ $p->liga }}" name="{{ $p->liga }}">
+                                <option value="">Selecione a liga</option>
+                                @foreach ($ligas as $liga)
+                                    <option value="{{ $liga->id }}" {{ old($p->liga, $partida->liga) == $liga->id ? 'selected' : '' }}>
+                                        {{ $liga->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @include('pages.includes.msg_errors', ['campo' => $p->liga])
+                        </div>
+
                         {{-- Time Principal --}}
                         <div class="form-group col-12">
                             <label for="{{ $p->time_principal }}">Time principal</label>
                             <select class="form-control @if ($errors->has($p->time_principal)) is-invalid @endif" name="{{ $p->time_principal }}" id="{{ $p->time_principal }}">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->id }}" {{ old($p->time_principal, $partida->time_principal) == $time->id ? 'selected' : '' }}>
+                                    <option value="{{ $time->id }}" data-liga="{{ $time->liga }}" {{ old($p->time_principal, $partida->time_principal) == $time->id ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
@@ -56,7 +70,7 @@
                             <select hidden class="form-control @if ($errors->has($p->time_adversario)) is-invalid @endif" name="" id="adversario_select">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->nome }}" {{ old($p->time_adversario, $partida->time_adversario) == $time->nome ? 'selected' : '' }}>
+                                    <option value="{{ $time->nome }}" data-id="{{ $time->id }}" data-liga="{{ $time->liga }}" {{ old($p->time_adversario, $partida->time_adversario) == $time->nome ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
@@ -100,8 +114,8 @@
 @stop
 
 @section('js')
-    {{-- <script src="../js/regras_insert.js"></script> --}}
-    <script src="../js/regras_teste.js"></script>
+    <script src="../js/regras_insert.js"></script>
+
     <script>
         $(function() {
             let time_principal = $('#time_principal').val();
@@ -110,6 +124,33 @@
             if(time_principal == psg) {
                 $('#existente').prop('disabled', true);
             }
+        });
+
+        $(function() {
+            let liga = $('#liga').val();
+
+            $('#time_principal option').each(function() {
+                let ligaTimePrincipal = $(this).data('liga');
+
+                // (ligaTimePrincipal != liga) ? $(this).hide() : $(this).show();
+                (liga == "" || ligaTimePrincipal == liga) ? $(this).show() : $(this).hide();
+            });
+        });
+
+        $(function() {
+            let time_principal = $('#time_principal').val();
+            let liga = $('#liga').val();
+
+            $('#adversario_select option').each(function() {
+                // let time_adversario = $(this).val();
+                let time_adversario = $(this).data('id');
+                let ligaTimeAdversario = $(this).data('liga');
+                // condições lógicas
+                let comparaTimes = time_principal == time_adversario;
+                let comparaLigas = liga != ligaTimeAdversario;
+
+                (comparaTimes || comparaLigas) ? $(this).hide() : $(this).show();
+            });
         });
     </script>
 @stop

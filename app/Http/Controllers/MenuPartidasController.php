@@ -14,6 +14,7 @@ class MenuPartidasController extends Controller
     public $time_adversario = 'time_adversario';
     public $f_dia = 'dia';
     public $horario = 'horario';
+    public $liga = 'liga';
     // =====================================================
     // MÉTODOS PRIVADOS
     // =====================================================
@@ -33,6 +34,7 @@ class MenuPartidasController extends Controller
             'time_adversario' => 'required|unique:tbl_partidas,time_adversario',
             'dia'             => 'required',
             'horario'         => 'required',
+            'liga'            => 'required',
         ];
 
         $this->mensagens = [
@@ -44,6 +46,7 @@ class MenuPartidasController extends Controller
 
             'dia.required'             => $obrigatorio,
             'horario.required'         => $obrigatorio,
+            'liga.required'            => $obrigatorio,
         ];
     }
 
@@ -94,8 +97,9 @@ class MenuPartidasController extends Controller
     public function create(MenuPartidasController $p)
     {
         $times = TblPartidasTimes::all();
+        $ligas = DB::table('tbl_partidas_ligas')->get();
 
-        return view('pages.partidas.inserir_partida', compact('times', 'p'));
+        return view('pages.partidas.inserir_partida', compact('times', 'ligas', 'p'));
     }
 
     public function store(Request $request)
@@ -119,12 +123,13 @@ class MenuPartidasController extends Controller
         $partida = $this->find_id($id);
 
         $times = TblPartidasTimes::all();
+        $ligas = DB::table('tbl_partidas_ligas')->get();
 
         if(!$partida) {
             return redirect()->route('partidas.index');
         }
 
-        return view('pages.partidas.editar_partida', compact('partida', 'times', 'p'));
+        return view('pages.partidas.editar_partida', compact('partida', 'times', 'ligas', 'p'));
     }
 
     public function update($id, Request $request)

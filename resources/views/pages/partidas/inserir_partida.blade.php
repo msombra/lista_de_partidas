@@ -11,16 +11,30 @@
         <div class="col-5 mx-auto">
             <div class="card">
 
-                <form action="{{ route('partidas.store') }}" method="post">
+                <form action="{{ route('partidas.store') }}" method="post" id="form-insert">
                     @csrf
                     <div class="card-body row">
+                        {{-- Liga --}}
+                        <div class="form-group col-12">
+                            <label for="{{ $p->liga }}">Liga</label>
+                            <select class="form-control @if ($errors->has($p->liga)) is-invalid @endif" id="{{ $p->liga }}" name="{{ $p->liga }}">
+                                <option value="">Selecione a liga</option>
+                                @foreach ($ligas as $liga)
+                                    <option value="{{ $liga->id }}" {{ old($p->liga) == $liga->id ? 'selected' : '' }}>
+                                        {{ $liga->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @include('pages.includes.msg_errors', ['campo' => $p->liga])
+                        </div>
+
                         {{-- Time Principal --}}
                         <div class="form-group col-12">
                             <label for="{{ $p->time_principal }}">Time principal</label>
                             <select class="form-control @if ($errors->has($p->time_principal)) is-invalid @endif" name="{{ $p->time_principal }}" id="{{ $p->time_principal }}">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->id }}" {{ old($p->time_principal) == $time->id ? 'selected' : '' }}>
+                                    <option value="{{ $time->id }}" data-liga="{{ $time->liga }}" {{ old($p->time_principal) == $time->id ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
@@ -57,7 +71,7 @@
                             <select hidden class="form-control @if ($errors->has($p->time_adversario)) is-invalid @endif" name="" id="adversario_select">
                                 <option value="">Selecione</option>
                                 @foreach ($times as $time)
-                                    <option value="{{ $time->nome }}" {{ old($p->time_adversario) == $time->nome ? 'selected' : '' }}>
+                                    <option value="{{ $time->nome }}" data-id="{{ $time->id }}" data-liga="{{ $time->liga }}" {{ old($p->time_adversario) == $time->nome ? 'selected' : '' }}>
                                         {{ $time->nome }}
                                     </option>
                                 @endforeach
@@ -101,8 +115,7 @@
 @stop
 
 @section('js')
-    {{-- <script src="../js/regras_insert.js"></script> --}}
-    <script src="../js/regras_teste.js"></script>
+    <script src="../js/regras_insert.js"></script>
 
     @if(session('toast_clear'))
         <script>

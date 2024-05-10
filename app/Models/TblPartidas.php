@@ -14,7 +14,8 @@ class TblPartidas extends Model
         'tipo_adversario',
         'time_adversario',
         'dia',
-        'horario'
+        'horario',
+        'liga'
     ];
 
     public $timestamps = false;
