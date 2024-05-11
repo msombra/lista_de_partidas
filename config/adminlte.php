@@ -343,6 +343,13 @@ return [
             ]
         ],
 
+        // PUSH RMS
+        [
+            'text'  => 'PUSH RMS',
+            'route' => 'push_rms.index',
+            'icon'  => 'fas fa-fw fa-arrow-up',
+        ],
+
         // ACORDO
         // [
         //     'text'  => 'Acordo',

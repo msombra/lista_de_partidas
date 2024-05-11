@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuPartidasController;
 use App\Http\Controllers\TimesController;
 use App\Http\Controllers\AcordoController;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\PushRmsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,9 @@ Route::post('/partidas/times_store', [TimesController::class, 'store'])->name('p
 Route::get('/partidas/times_edit={id}', [TimesController::class, 'edit'])->name('partidas.times_edit');
 Route::post('/partidas/times_update={id}', [TimesController::class, 'update'])->name('partidas.times_update');
 Route::delete('/partidas/times_delete={id}', [TimesController::class, 'delete'])->name('partidas.times_delete');
+
+// PUSH RMS
+Route::get('/push_rms', [PushRmsController::class, 'index'])->name('push_rms.index');
 
 // teste
 // Route::get('/teste', [TesteController::class, 'index'])->name('teste.index');
