@@ -44,6 +44,7 @@ Route::delete('/partidas/times_delete={id}', [TimesController::class, 'delete'])
 
 // PUSH RMS
 Route::get('/push_rms', [PushRmsController::class, 'index'])->name('push_rms.index');
+Route::post('/push_rms/update={id}', [PushRmsController::class, 'update'])->name('push_rms.update');
 
 // teste
 // Route::get('/teste', [TesteController::class, 'index'])->name('teste.index');

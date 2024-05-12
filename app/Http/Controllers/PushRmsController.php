@@ -13,4 +13,17 @@ class PushRmsController extends Controller
 
         return view('push_rms.index', compact('registros'));
     }
+
+    public function update($id, Request $request)
+    {
+        $parte = Parte::find($id);
+
+        $checkboxValue = $request['lido'] ? 1 : 0;
+
+        $parte->lido = $checkboxValue;
+        $parte->nao_finalizado = !$checkboxValue;
+        $parte->save();
+
+        return redirect()->back();
+    }
 }

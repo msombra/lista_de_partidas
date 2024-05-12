@@ -16,7 +16,7 @@
                         <th>Partes</th>
                         <th class="text-center">Status</th>
                         <th>Ler</th>
-                        <th>Ação</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,11 +31,14 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <input type="checkbox" class="lido form-check-input check-size" name="lido" {{ $registro->lido == true ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input check-size" name="lido" id="lido">
                                 </td>
                                 <td>
-                                    <button type="submit" class="confirmar btn btn-secondary btn-sm" disabled>
-                                        Confirmar
+                                    <button type="submit" class="btn btn-success btn-sm" {{ $registro->lido == true ? 'disabled' : '' }}>
+                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="submit" class="btn btn-danger btn-sm" {{ $registro->lido == false ? 'disabled' : '' }}>
+                                        <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                                     </button>
                                 </td>
                             </form>
@@ -60,16 +63,4 @@
 @section('js')
     {{-- Carrega o script da Datatable --}}
     <script src="../js/datatable.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.lido').change(function() {
-                let confirm = $(this).closest('tr').find('.confirmar');
-
-                confirm.toggleClass('btn-primary btn-secondary');
-                confirm.prop('disabled', function(index, attr) {
-                    return !attr;
-                });
-            });
-        });
-    </script>
 @stop
