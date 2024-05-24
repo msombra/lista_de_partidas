@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MenuPartidasController;
+use App\Http\Controllers\CnjController;
+use App\Http\Controllers\TesteController;
 use App\Http\Controllers\TimesController;
 use App\Http\Controllers\AcordoController;
-use App\Http\Controllers\TesteController;
 use App\Http\Controllers\PushRmsController;
+use App\Http\Controllers\MenuPartidasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,11 @@ Route::delete('/partidas/times_delete={id}', [TimesController::class, 'delete'])
 // PUSH RMS
 Route::get('/push_rms', [PushRmsController::class, 'index'])->name('push_rms.index');
 Route::post('/push_rms/update={id}', [PushRmsController::class, 'update'])->name('push_rms.update');
+
+// CNJs
+Route::resource('/cnjs', CnjController::class);
+// Route::post('/cnj_store', [CnjController::class, 'store'])->name('cnj.store');
+// Route::post('/cnj_update={id}', [CnjController::class, 'update'])->name('cnj.update');
 
 // teste
 // Route::get('/teste', [TesteController::class, 'index'])->name('teste.index');

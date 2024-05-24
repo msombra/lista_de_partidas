@@ -350,6 +350,14 @@ return [
             'icon'  => 'fas fa-fw fa-arrow-up',
         ],
 
+        // CNJs
+        [
+            'text'  => 'CNJ',
+            // 'route' => 'cnj.index',
+            'url' => '/cnjs',
+            'icon'  => 'fas fa-fw fa-file',
+        ],
+
         // ACORDO
         // [
         //     'text'  => 'Acordo',
