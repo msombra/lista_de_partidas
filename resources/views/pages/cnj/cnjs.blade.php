@@ -11,7 +11,6 @@
             <div class="text-right">
                 <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modalInsert">Inserir Novo CNJ</button>
             </div>
-            @include('pages.includes.modal_insert')
 
             <div class="card mt-3 p-3">
                 <div class="card-body table-responsive p-0">
@@ -26,80 +25,40 @@
                             @foreach ($dados as $dado)
                                 <tr>
                                     <td>{{ $dado->cnj }}</td>
-                                    <td>
-                                        <button class="btn btn-success btn-sm edit-btn" data-id="{{ $dado->id }}" data-cnj="{{ $dado->cnj }}" data-toggle="modal" data-target="#modalInsert">
+                                    <td class="d-flex justify-content-center">
+                                        <button class="btn btn-success btn-sm edit-btn mr-2" data-toggle="modal" data-target="#modalEdit{{ $dado->id }}">
                                             <i class="fas fa-fw fa-edit"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-sm delete-btn" data-id="{{ $dado->id }}">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                        {{-- <form>
+                                        <form action="{{ route('cnjs.destroy', $dado->id) }}" method="post">
                                             @method('delete')
                                             @csrf
-                                            <a class="btn btn-success btn-sm">
-                                                <i class="fas fa-fw fa-edit"></i>
-                                            </a>
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Deseja excluir o cnj?')">
                                                 <i class="fas fa-fw fa-trash"></i>
                                             </button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
+
+                                @include('pages.includes.modal_edit')
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            @include('pages.includes.modal_insert')
         </div>
     </div>
 @stop
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#modalForm').on('submit', function (e) {
-                e.preventDefault();
+        $(document).ready(function(){
+            var error = "{{ $errors->has('cnj') }}";
 
-                let id = $('#modalInsert').val();
-                let url = id ? `/cnj=${id}` : '/cnjs';
-                let method = id ? 'PUT' : 'POST';
-
-                $.ajax({
-                    url: url,
-                    method: method,
-                    data: $(this).serialize(),
-                    success: function (response) {
-                        location.reload();
-                    }
-                });
-            });
-
-            $('.edit-btn').on('click', function () {
-                let id = $(this).data('id');
-                let cnj = $(this).data('cnj');
-
-                $('#cnjId').val(id);
-                $('#cnj').val(cnj);
-                $('#modalInsertLabel').text('Edit Task');
-            });
-
-            $('#modalForm').on('hidden.bs.modal', function () {
-                $('#cnjId').val('');
-                $('#cnj').val('');
-                $('#modalInsertLabel').text('Add Task');
-            });
-
-            $('.delete-btn').on('click', function () {
-                let id = $(this).data('id');
-                $.ajax({
-                    url: `/cnj=${id}`,
-                    method: 'DELETE',
-                    success: function (response) {
-                        location.reload();
-                    }
-                });
-            });
+            if(error) {
+                $('#modalInsert').modal('show');
+            }
         });
     </script>
 @stop

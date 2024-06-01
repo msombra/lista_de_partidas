@@ -14,28 +14,34 @@ class CnjController extends Controller
         return view('pages.cnj.cnjs', compact('dados'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Cnj $cnj)
     {
-        $model = new Cnj();
-        $model->cnj = $request['cnj'];
-        $model->save();
+        $regras = ['cnj' => 'required'];
+        $mensagens = ['cnj.required' => 'Campo de preenchimento obrigatório'];
 
-        return response()->json(['success' => 'Cnj inserido com sucesso.']);
-        // return redirect()->route('cnj.index');
+        $validar = $request->validate($regras, $mensagens);
+
+        $cnj->create($validar);
+
+        return redirect()->route('cnjs.index');
     }
 
     public function update(Request $request, Cnj $cnj)
     {
-        $cnj->update($request->all());
+        $regras = ['cnj' => 'required'];
+        $mensagens = ['cnj.required' => 'Campo de preenchimento obrigatório'];
 
-        return response()->json(['success' => 'Cnj atualizado com sucesso.']);
-        // return redirect()->route('cnj.index');
+        $validar = $request->validate($regras, $mensagens);
+
+        $cnj->update($validar);
+
+        return redirect()->route('cnjs.index');
     }
 
-    public function delete(Cnj $cnj)
+    public function destroy(Cnj $cnj)
     {
         $cnj->delete();
 
-        return response()->json(['success' => 'Cnj deletado com sucesso.']);
+        return redirect()->route('cnjs.index');
     }
 }

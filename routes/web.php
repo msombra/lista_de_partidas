@@ -48,7 +48,7 @@ Route::get('/push_rms', [PushRmsController::class, 'index'])->name('push_rms.ind
 Route::post('/push_rms/update={id}', [PushRmsController::class, 'update'])->name('push_rms.update');
 
 // CNJs
-Route::resource('/cnjs', CnjController::class);
+Route::resource('cnjs', CnjController::class);
 // Route::post('/cnj_store', [CnjController::class, 'store'])->name('cnj.store');
 // Route::post('/cnj_update={id}', [CnjController::class, 'update'])->name('cnj.update');
 

@@ -354,7 +354,7 @@ return [
         [
             'text'  => 'CNJ',
             // 'route' => 'cnj.index',
-            'url' => '/cnjs',
+            'url' => 'cnjs',
             'icon'  => 'fas fa-fw fa-file',
         ],
 
