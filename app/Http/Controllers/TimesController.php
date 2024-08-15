@@ -80,7 +80,7 @@ class TimesController extends Controller
 
         TblPartidasTimes::create($validar);
 
-        return redirect()->route('partidas.times_list')->with('toast_time_insert', 'Time cadastrado com sucesso!');
+        return redirect()->route('partidas.times_list')->with('success', 'Time cadastrado com sucesso!');
     }
 
 
@@ -111,7 +111,7 @@ class TimesController extends Controller
 
         $time->update($validar);
 
-        return redirect()->route('partidas.times_list')->with('toast_time_update', 'Time atualizado com sucesso!');
+        return redirect()->route('partidas.times_list')->with('success', 'Time atualizado com sucesso!');
     }
 
     // =====================================================
@@ -127,6 +127,6 @@ class TimesController extends Controller
 
         $time->delete();
 
-        return redirect()->route('partidas.times_list')->with('toast_time_delete', 'Time deletado com sucesso!');
+        return redirect()->route('partidas.times_list')->with('success', 'Time deletado com sucesso!');
     }
 }

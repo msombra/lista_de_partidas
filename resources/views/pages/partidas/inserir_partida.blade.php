@@ -116,21 +116,5 @@
 
 @section('js')
     <script src="../js/regras_insert.js"></script>
-
-    @if(session('toast_clear'))
-        <script>
-            Swal.fire({
-                icon: "success",
-                // title: "Listagem limpada com sucesso!",
-                title: "{{ session('toast_clear') }}",
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                background: '#00BFFF',
-                color: '#fff',
-                iconColor: '#fff',
-            });
-        </script>
-    @endif
+    @include('pages.includes.toasts')
 @stop
