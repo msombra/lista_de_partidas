@@ -11,5 +11,10 @@ class TblPartidasTimes extends Model
 
     protected $fillable = ['nome', 'liga'];
 
+    public function setNomeAttribute($value)
+    {
+        $this->attributes['nome'] = ucwords($value);
+    }
+
     public $timestamps = false;
 }

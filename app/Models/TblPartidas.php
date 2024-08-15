@@ -18,5 +18,10 @@ class TblPartidas extends Model
         'liga'
     ];
 
+    public function setTimeAdversarioAttribute($value)
+    {
+        $this->attributes['time_adversario'] = ucwords($value);
+    }
+
     public $timestamps = false;
 }

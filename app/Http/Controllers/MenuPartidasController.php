@@ -106,9 +106,6 @@ class MenuPartidasController extends Controller
     {
         $validar = $this->validar($request);
 
-        // Transforma o valor do campo `time_adversario` para ter as iniciais das palavras em maiúsculas
-        $validar[$this->time_adversario] = ucwords($validar[$this->time_adversario]);
-
         TblPartidas::create($validar);
 
         return redirect()->route('partidas.index')->with('toast_insert', 'Partida incluída com sucesso!');
@@ -142,9 +139,6 @@ class MenuPartidasController extends Controller
         $this->mensagens['time_adversario.unique'] = '';
 
         $validar = $this->validar($request);
-
-        // Transforma o valor do campo `time_adversario` para ter as iniciais das palavras em maiúsculas
-        $validar[$this->time_adversario] = ucwords($validar[$this->time_adversario]);
 
         if(!$partida) {
             return redirect()->route('partidas.index');
