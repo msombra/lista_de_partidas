@@ -96,7 +96,14 @@ class MenuPartidasController extends Controller
     // =====================================================
     public function create(MenuPartidasController $p)
     {
-        $times = TblPartidasTimes::all();
+        $times = DB::table('tbl_partidas_times as t')
+            ->select('t.id', 't.nome', 't.liga')
+            ->leftJoin('tbl_partidas as ptp', 't.id', 'ptp.time_principal')
+            ->leftJoin('tbl_partidas as pta', 't.nome', 'pta.time_adversario')
+            ->whereNull('ptp.time_principal')
+            ->whereNull('pta.time_principal')
+            ->get();
+
         $ligas = DB::table('tbl_partidas_ligas')->get();
 
         return view('pages.partidas.inserir_partida', compact('times', 'ligas', 'p'));

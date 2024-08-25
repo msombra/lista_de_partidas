@@ -8,14 +8,14 @@ $(document).ready(function() {
         $('#adversarioExistente').css('display', 'block');
     }
 
-    if(time_principal == 11 || time_principal == 15) {
+    if(time_principal == 16) {
         $('#existente').prop('disabled', true);
     }
 
-    const PL = [1, 2, 3, 4, 5, 6, 7];
-    const LA_LIGA = [8, 9, 17];
-    const bundesliga = [10, 16, 18, 20];
-    const ITA = [12, 13, 14, 19];
+    const PL = [1, 2, 3, 4, 5, 6];
+    const LA_LIGA = [7, 8, 9];
+    const bundesliga = [10, 11, 12];
+    const ITA = [13, 14, 15];
 
     if(PL.includes(Number(time_principal))) {
         PL.forEach(function(times) {

@@ -33,13 +33,11 @@ $(document).ready(function() {
             let liga = $(this).val();
             limpaSelectsTimes();
 
-            $(function() {
-                $('#time_principal option').each(function() {
-                    let ligaTimePrincipal = $(this).data('liga');
+            $('#time_principal option').each(function() {
+                let ligaTimePrincipal = $(this).data('liga');
 
-                    // (ligaTimePrincipal != liga) ? $(this).hide() : $(this).show();
-                    (liga == "" || ligaTimePrincipal == liga) ? $(this).show() : $(this).hide();
-                });
+                // (ligaTimePrincipal != liga) ? $(this).hide() : $(this).show();
+                (liga == "" || ligaTimePrincipal == liga) ? $(this).show() : $(this).hide();
             });
         });
     });
@@ -91,7 +89,7 @@ $(document).ready(function() {
     $(function() {
         $('#time_principal').change(function() {
             let time_principal = $(this).val();
-            let psg = 11;
+            let psg = 16;
             let existente = $('#existente');
 
             if(time_principal == psg) {
