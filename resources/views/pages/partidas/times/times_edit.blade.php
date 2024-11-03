@@ -47,37 +47,18 @@
 @section('js')
     <script src="../js/regras_time.js"></script>
     <script>
-        $(document).ready(function () {
-            // Armazena os valores iniciais dos campos
-            var initialValues = {
-                'time': $('#time').val(),
-                'liga': $('#liga').val(),
-            };
+        $(document).ready(function() {
+            const initialTime = $('#time').val();
+            const initialLiga = $('#liga').val();
 
-            // Atualiza o estado do botão com base nos valores atuais
-            function updateButtonState() {
-                var isFormChanged = false;
+            $('#time, #liga').on('input change', function() {
+                let changedTime = $('#time').val();
+                let changedLiga = $('#liga').val();
 
-                // Verifica se algum campo foi alterado
-                $.each(initialValues, function (fieldName, initialValue) {
-                    var currentValue = $('#' + fieldName).val();
-                    if (currentValue !== initialValue) {
-                        isFormChanged = true;
-                        return false; // Sai do loop se encontrar uma alteração
-                    }
-                });
+                let state = (changedTime !== initialTime || changedLiga !== initialLiga) ? false : true;
 
-                // Habilita/desabilita o botão com base no estado atual
-                $('#atualizar').prop('disabled', !isFormChanged);
-            }
-
-            // Monitora as alterações nos campos
-            $('#time, #liga').on('input change', function () {
-                updateButtonState();
-            });
-
-            // Atualiza o estado do botão inicialmente
-            updateButtonState();
-        });
+                $('#atualizar').prop('disabled', state);
+            })
+        })
     </script>
 @endsection
